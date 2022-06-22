@@ -155,59 +155,59 @@ Part 1b Assignment: 1 Step
 */
 
 /*
-Thing 1)
+Thing 1) Stationer's shop
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of paper sizes for sale
+    2) number of wrapping paper designs for sale
+    3) amount of money spent on electricity per month
+    4) amount of profit made per day
+    5) number of employees
 3 things it can do:
-    1)
-    2)
-    3)
+    1) make a photocopy
+    2) take a passport photo
+    3) wrap a gift
  */
 
 /*
-Thing 2)
+Thing 2) Wallet
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of slots
+    2) number of credit cards
+    3) amount of cash carried
+    4) amount of weight
+    5) color
 3 things it can do:
-    1)
-    2)
-    3)
+    1) identify the owner
+    2) pay lunch
+    3) enter a building
  */
 
 /*
-Thing 3)
+Thing 3) Laptop
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) color
+    2) weight
+    3) processor model
+    4) screen size
+    5) brand
 3 things it can do:
-    1)
-    2)
-    3)
+    1) process docuemnts
+    2) surf the web
+    3) take a picture
  */
 
 /*
-Thing 4)
+Thing 4) Swiss Army Knife
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) color
+    2) amount of tools
+    3) weight
+    4) year of manufacturing
+    5) market value
 3 things it can do:
-    1)
-    2)
-    3)
+    1) cut food
+    2) open a bottle
+    3) unscrew 
  */
 
  /*
