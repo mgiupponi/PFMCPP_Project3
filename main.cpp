@@ -53,51 +53,51 @@ Sub Object 1: Steering Wheel
     Name 4 things you'll find on the:    Steering Wheel
         1) paddle shifters
         2) 'cruise control' controls
-        3) 
-        4) 
+        3) horn switch
+        4) radio volume controls
     Name 2 things you can do with the:   Steering Wheel
         1) adjust cruise control settings.
-        2)
+        2) blow the horn
         
 Sub Object 2: Instrument Cluster
     Name 4 things you'll find on the:   Instrument Cluster
-        1)
-        2)
-        3)
-        4)
+        1) speedometer
+        2) odometer
+        3) service indicator
+        4) fuel gauge
     Name 3 things you can do with the:   Instrument Cluster
-        1)
-        2)
-        3)
+        1) read the current car speed
+        2) read the car kilometers 
+        3) read the fuel tank level
     
 Sub Object 3: Environment Controls
     Name 3 things you'll find on the:    Environment Controls
-        1)
-        2)
-        3)
+        1) air conditioner switch
+        2) temperature dial
+        3) flow selector
     Name 3 things you can do with the:   Environment Controls
-        1)
-        2)
-        3)
+        1) turn the air conditioner On
+        2) increase the indoor temperature
+        3) select the air flow source
 
 Sub Object 4: Infotainment System
     Name 3 things you'll find on the:    Infotainment System
-        1)
-        2)
-        3)
+        1) app selector
+        2) radio volume controls
+        3) navigation map
     Name 3 things you can do with the:   Infotainment System
-        1)
-        2)
-        3)
+        1) select an app to show in the screen
+        2) adjust the radio volume
+        3) follow navigation instructions
 
 Sub Object 5: Seat 
     Name 3 things you'll find on the:    Seat
-        1)
-        2)
-        3)
+        1) adjuster rod
+        2) regular lever
+        3) headrest
     Name 2 things you can do with the:   Seat
-        1)
-        2)
+        1) adjust seat height
+        2) adjust headrest height
 */
 
 /*
