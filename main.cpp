@@ -280,7 +280,7 @@ Define an object that is made of 5 sub-objects.
 */
 
 /*
-Thing 10) Headphone
+Thing 10) Wireless headphone
 5 properties:
     1) Speakers
     2) Cables
@@ -387,71 +387,71 @@ Step 3 is written below UDTs 5 - 9
 /*
 Thing 5) Speakers
 5 properties:
-    1) 
-    2) 
-    3) 
-    4) 
-    5) 
+    1) Amount of devices (int)
+    2) Size in cm (int)
+    3) Maximum power in watts (double)
+    4) Maximum decibels capacity (double)
+    5) Number of wirings of the coil (int)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Play sound
+    2) Reduce external noise
+    3) 
  */
 
 /*
 Thing 6) Cables
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Length in cm (int)
+    2) Color (std::string)
+    3) Amount of internal wires (int)
+    4) External material (std::string)
+    5) Internal wire thickness in um (int)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Hold the device over user's head
+    2) Transport audio signals
+    3) Transport control signals
  */
 
 /*
 Thing 7) Bluetooth interface
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Bluetooth version (double)
+    2) Transmission power in mW (double)
+    3) Receiver sesitivity in dB (double)
+    4) Distance coverage in meters (int)
+    5) Data bandwith capacity in Mbps (float)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Receive audio
+    2) Send play signal
+    3) Send battery level
  */
 
 /*
 Thing 8) Logic circuit
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) width in cm (int)
+    2) length in cm (int)
+    3) thickness in mm (double)
+    4) amount of integrated circuits (int)
+    5) amount of leds (int)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) generate power audio for speakers
+    2) generate voice information
+    3) monitor battery charge
  */
 
 /*
 Thing 9) Buttons
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Amount (int)
+    2) Color (std::string)
+    3) Outdoor protection level IPXX (int)
+    4) Material (std::string)
+    5) Area in mm2 (double)
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Power on the device
+    2) Change song
+    3) Answer a call
  */
 
 /*
