@@ -290,7 +290,7 @@ Thing 10) Headphone
 3 things it can do:
     1) Play sound
     2) Record sound
-    3) Take a call
+    3) Answer a call
  */
 
 /*
@@ -385,7 +385,21 @@ Step 3 is written below UDTs 5 - 9
 */
 
 /*
-Thing 5)
+Thing 5) Speakers
+5 properties:
+    1) 
+    2) 
+    3) 
+    4) 
+    5) 
+3 things it can do:
+    1)
+    2)
+    3)
+ */
+
+/*
+Thing 6) Cables
 5 properties:
     1)
     2)
@@ -399,7 +413,7 @@ Thing 5)
  */
 
 /*
-Thing 6)
+Thing 7) Bluetooth interface
 5 properties:
     1)
     2)
@@ -413,7 +427,7 @@ Thing 6)
  */
 
 /*
-Thing 7)
+Thing 8) Logic circuit
 5 properties:
     1)
     2)
@@ -427,21 +441,7 @@ Thing 7)
  */
 
 /*
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
- */
-
-/*
-Thing 9)
+Thing 9) Buttons
 5 properties:
     1)
     2)
