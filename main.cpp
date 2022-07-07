@@ -154,61 +154,7 @@ Part 1b Assignment: 1 Step
         'int float double bool char std::string'.
 */
 
-/*
-Thing 1) Stationer's shop
-5 properties:
-    1) number of paper sizes for sale
-    2) number of wrapping paper designs for sale
-    3) amount of money spent on electricity per month
-    4) amount of profit made per day
-    5) number of employees
-3 things it can do:
-    1) make a photocopy
-    2) take a passport photo
-    3) wrap a gift
- */
 
-/*
-Thing 2) Wallet
-5 properties:
-    1) number of slots
-    2) number of credit cards
-    3) amount of cash carried
-    4) amount of weight
-    5) color
-3 things it can do:
-    1) identify the owner
-    2) pay lunch
-    3) enter a building
- */
-
-/*
-Thing 3) Laptop
-5 properties:
-    1) color
-    2) weight
-    3) processor model
-    4) screen size
-    5) brand
-3 things it can do:
-    1) process docuemnts
-    2) surf the web
-    3) take a picture
- */
-
-/*
-Thing 4) Swiss Army Knife
-5 properties:
-    1) color
-    2) amount of tools
-    3) weight
-    4) year of manufacturing
-    5) market value
-3 things it can do:
-    1) cut food
-    2) open a bottle
-    3) unscrew 
- */
 
  /*
 Part 1c - Lesson
@@ -279,19 +225,7 @@ Define an object that is made of 5 sub-objects.
     you'll define these 5 sub-objects in Part 1d.
 */
 
-/*
-Thing 10) Wireless headphone
-5 properties:
-    1) Speakers
-    2) Cables
-    3) Bluetooth interface
-    4) Logic circuit
-    5) Buttons
-3 things it can do:
-    1) Play sound
-    2) Record sound
-    3) Answer a call
- */
+
 
 /*
 Part 1d - Lesson
@@ -384,6 +318,82 @@ each property for UDTs 5 - 9.
 Step 3 is written below UDTs 5 - 9
 */
 
+
+
+/*
+===================
+Part 1d assignment: Step 3
+===================
+You've just defined 10 UDTs!
+4 of them are unrelated (UDTs 1-4).
+5 of them form the sub-objects that make up the 10th UDT. 
+
+MOVE THEM BELOW this block comment and put them in numerical order 
+(1 - 10) starting on line 473
+    DO NOT COPY. 
+    I do not want to see 2 copies of your Plain-English UDTs.  
+    I only want to see the 10 UDTs written BELOW this block comment, in numerical order (1 - 10).
+
+After you have MOVED your 10 UDTs, send me a DM with your pull request link.
+I will review the pseudo-code that you have written.
+*/
+
+/*
+Thing 1) Stationer's shop
+5 properties:
+    1) number of paper sizes for sale
+    2) number of wrapping paper designs for sale
+    3) amount of money spent on electricity per month
+    4) amount of profit made per day
+    5) number of employees
+3 things it can do:
+    1) make a photocopy
+    2) take a passport photo
+    3) wrap a gift
+ */
+
+/*
+Thing 2) Wallet
+5 properties:
+    1) number of slots
+    2) number of credit cards
+    3) amount of cash carried
+    4) amount of weight
+    5) color
+3 things it can do:
+    1) identify the owner
+    2) pay lunch
+    3) enter a building
+ */
+
+/*
+Thing 3) Laptop
+5 properties:
+    1) color
+    2) weight
+    3) processor model
+    4) screen size
+    5) brand
+3 things it can do:
+    1) process docuemnts
+    2) surf the web
+    3) take a picture
+ */
+
+/*
+Thing 4) Swiss Army Knife
+5 properties:
+    1) color
+    2) amount of tools
+    3) weight
+    4) year of manufacturing
+    5) market value
+3 things it can do:
+    1) cut food
+    2) open a bottle
+    3) unscrew 
+ */
+
 /*
 Thing 5) Speakers
 5 properties:
@@ -455,25 +465,18 @@ Thing 9) Buttons
  */
 
 /*
-===================
-Part 1d assignment: Step 3
-===================
-You've just defined 10 UDTs!
-4 of them are unrelated (UDTs 1-4).
-5 of them form the sub-objects that make up the 10th UDT. 
-
-MOVE THEM BELOW this block comment and put them in numerical order 
-(1 - 10) starting on line 473
-    DO NOT COPY. 
-    I do not want to see 2 copies of your Plain-English UDTs.  
-    I only want to see the 10 UDTs written BELOW this block comment, in numerical order (1 - 10).
-
-After you have MOVED your 10 UDTs, send me a DM with your pull request link.
-I will review the pseudo-code that you have written.
-*/
-
-
-
+Thing 10) Wireless headphone
+5 properties:
+    1) Speakers
+    2) Cables
+    3) Bluetooth interface
+    4) Logic circuit
+    5) Buttons
+3 things it can do:
+    1) Play sound
+    2) Record sound
+    3) Answer a call
+ */
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
