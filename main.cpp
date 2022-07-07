@@ -280,17 +280,17 @@ Define an object that is made of 5 sub-objects.
 */
 
 /*
-Thing 10)
+Thing 10) Headphone
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) Speakers
+    2) Cables
+    3) Bluetooth interface
+    4) Logic circuit
+    5) Buttons
 3 things it can do:
-    1)
-    2)
-    3)
+    1) Play sound
+    2) Record sound
+    3) Take a call
  */
 
 /*
