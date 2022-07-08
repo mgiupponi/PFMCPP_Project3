@@ -403,9 +403,9 @@ Thing 5) Speakers
     4) Maximum decibels capacity (double)
     5) Number of wirings of the coil (int)
 3 things it can do:
-    1) Play sound
+    1) Play audible sound
     2) Reduce external noise
-    3) 
+    3) Play ultrasound
  */
 
 /*
