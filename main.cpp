@@ -201,6 +201,50 @@ Thing 1) Stationer's shop
     3) wrap a gift
  */
 
+struct StationersShop //                            1) define an empty struct for each of your 10 types.       
+{
+    //number of paper sizes for sale                    2) copied and commented-out plain-english property
+    int numPaperSizesForsale = 15; //                   3) member variables with relevant data types.
+    //number of wrapping paper designs for sale     
+    int numWrappingPaperDesignsForsale = 20;     
+    //amount of money spent on electricity per month    
+    float monthElectricityBill = 150.2f;            
+    //amount of profit made per day         
+    float profitPerDay = 105.9f;               
+    //number of employees              
+    int numberOfEmployees = 10;               
+    
+    struct Paper //5)                                 Note that the nested type 'Paper' is related to the 'StationersShop' 
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        bool forPhotoPrinting = false;
+        float thicnessInuM = 200.0f;        
+        float priceInUsd = 0.1f;
+        std::string sizeStandard = "A4";
+        std::string manufacturer = "whixe";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        void printDocument(std::string fileName, int numPagesPerSize, bool onesided = false); 
+        //
+        float printPhoto(int qualityIndex);
+        //
+        void moveToSellingOutbox(Paper paperB);
+        //
+    };
+
+     //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    float makeAPhotocopy(int amountOfPages, bool isBlackAndWhite = true , bool onesided = false);
+    //1) returns the amount to be charged in USD
+    float takePassportPhoto(int amountOfCopiesToBePrinted, std::string sizeStandard);
+    //2) returns the amount to be charged in USD
+    void wrapAGift(std::string wrappingPaperModel); 
+    //3)
+
+    //5) a member variable whose type is a UDT.
+    Paper paperBeingSold;  
+
 /*
 Thing 2) Wallet
 5 properties:
@@ -214,6 +258,48 @@ Thing 2) Wallet
     2) pay lunch
     3) enter a building
  */
+
+struct Wallet //                            1) define an empty struct for each of your 10 types.       
+{
+    //number of slots                    2) copied and commented-out plain-english property
+    int numSlots = 7; //                   3) member variables with relevant data types.
+    //number of credit cards    
+    int numCreditCards = 4;     
+    //amount of cash carried    
+    float amountOfCashCarried = 250.0f;            
+    //amount of weight         
+    float weightIngrams = 150.5f;               
+    //color              
+    std::string color = "Brown";               
+    
+    struct CreditCard      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        bool isInternational = true;
+        float widthInCm = 200.0f;        
+        float availableCreditInUsd = 1400.0f;
+        std::string bank = "HSBC";
+        std::string program = "flyingSilver";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        int identifyTheOwner(float costPerGallon, double fuelAmountInGallons = 2.0, bool requiresDiesel = false);
+        // returns the Owner national id
+        void payLunch(std::string failureType, bool requiresTow = false);
+        // returns the number of miles traveled
+        int enterABuilding(bool includeUberLyftTrips);
+        // returns the number of miles traveled
+    };
+
+    //sell a paper
+    void sellAPaper(Paper paperA); //4) a member function whose parameter is a UDT.
+    //charge customer
+    float chargeCustomer(float discountPercentage); //3) returns the total amount charged.
+    //make a photocopy using a Paper
+    void makeAPhotocopy(Paper paperB);
+    
+    //5) a member variable whose type is a UDT.
+    Paper paperBeingSold;  
 
 /*
 Thing 3) Laptop
