@@ -574,22 +574,22 @@ struct BluetoothInterface //                            1) define an empty struc
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        double sendAudioSignal(std::string voltageSignalFile = "boom.v");
-        // returns power in watts consumed
-        float applyVoltage(float voltageLevel, double durationInMicroSeconds);
-        // returns resulting current
+        bool testIfChannelAvailable();
+        // returns true if channel is in silence
+        int listenChannel(float sensitivityInDb, double durationInMicroSeconds);
+        // returns binary code being received
         void sendBinaryCode(double frequency, int binaryCode = 1100101010);
         // 
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    double receiveAudio();
-    // returns weight in grams over user head
-    float sendPlaySignal(WirelessChannel wirelessChannelA, std::string audioFile = "boom.wav");
+    float receiveAudio(WirelessChannel wirelessChannelC, double rxAmplification);
+    // returns average level of audio signal
+    double sendPlaySignal(WirelessChannel wirelessChannelA);
     // returns microseconds taken to send the audio
-    float sendBatteryLevel(WirelessChannel wirelessChannelB, int binaryCode = 1100101010 );
-    // returns microseconds taken to send the code
+    double sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery = true );
+    // returns batery charge in percentage
     
     //5) a member variable whose type is a UDT.
     WirelessChannel wirelessChannelSelected;
@@ -609,6 +609,51 @@ Thing 8) Logic circuit
     3) monitor battery charge
  */
 
+struct LogicCircuit //                            1) define an empty struct for each of your 10 types.       
+{
+    //width in cm (int)                  2) copied and commented-out plain-english property
+    double bluetoothVersion = 2.0;  //                   3) member variables with relevant data types.
+    //length in cm (int) 
+    double transmissionPowerInMw = 300;     
+    //thickness in mm (double)  
+    double receiverSensitivityInDb= 5.0;              
+    //amount of integrated circuits (int)    
+    int distanceCoverageInMeters = 10;               
+    //amount of leds (int)        
+    float dataBwCapacityInMbps = 20.0f;               
+    
+    struct BusChannel      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        int amountOfWires = 5;
+        int amountOfdigitalwires = 2;
+        double maxVoltage = 5;
+        std::string busSource = "bluetoothAudioReceiver";
+        std::string busDestination = "centralCircuit";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        bool testIfBusAvailable();
+        // returns true if bus is in silence
+        int readDigitalBus(int wireNumber, bool stopWhenAllzeros = true);
+        // returns binary code being received
+        void sendAudioSignal(int wireNumber, std::string audioCode);
+        // 
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    float generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel = 10.0f);
+    // returns average level of audio signal
+    void generateVoiceInformation(BusChannel busChannel, std::string stringToSend = "Power On");
+    //
+    double monitorBatteryCharge(BusChannel batteryBusToRead);
+    // returns batery charge in percentage
+    
+    //5) a member variable whose type is a UDT.
+    BusChannel busChannelBeingUsed;
+};
+
 /*
 Thing 9) Buttons
 5 properties:
@@ -622,6 +667,51 @@ Thing 9) Buttons
     2) Change song
     3) Answer a call
  */
+
+struct Buttons //                            1) define an empty struct for each of your 10 types.       
+{
+    //Amount (int)                  2) copied and commented-out plain-english property
+    int Amount = 3;  //                   3) member variables with relevant data types.
+    //Color
+    std::string color = "Black";     
+    //Outdoor protection level IPXX  
+    int IPProtection = 57;              
+    //Material (std::string)   
+    std::string material = "silicone";               
+    //Area in mm2 (double)       
+    double areaInMm = 20.0f;               
+    
+    struct CircuitSwitch      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        int amountOfWires = 5;
+        int amountOfdigitalwires = 2;
+        double maxVoltage = 5;
+        std::string busSource = "bluetoothAudioReceiver";
+        std::string busDestination = "centralCircuit";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        bool testIfBusAvailable();
+        // returns true if bus is in silence
+        int readDigitalBus(int wireNumber, bool stopWhenAllzeros = true);
+        // returns binary code being received
+        void sendAudioSignal(int wireNumber, std::string audioCode);
+        // 
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    float powerOnTheDevice(CircuitSwitch circuitSwitchA, BusChannel rxBluetoothBus, float amplificationLevel = 10.0f);
+    // returns average level of audio signal
+    void changeSong(CircuitSwitch circuitSwitchB, std::string stringToSend = "Power On");
+    //
+    double answerACall(CircuitSwitch circuitSwitchB);
+    // returns batery charge in percentage
+    
+    //5) a member variable whose type is a UDT.
+    CircuitSwitch circuitSwitchBeingUsed;
+};
 
 /*
 Thing 10) Wireless headphone
