@@ -470,13 +470,13 @@ struct Speakers //                            1) define an empty struct for each
     //the parameter names are related to the work the function will perform.
     float playAudibleSound(SoundFile soundFileA, double level = 6.0);
     // returns seconds taken to play the sound
-    bool reduceExternalNoise(int duration);
+    bool activateNoiseReduction(int duration);
     // returns if noise reduction already active
     float playUltraSound(SoundFile soundFileB, double level);
     // returns seconds taken to play the sound
     
     //5) a member variable whose type is a UDT.
-    SoundFile soundFileBeingProcessed;
+    SoundFile soundFileBeingPlayed;
 };
 
 /*
@@ -493,6 +493,50 @@ Thing 6) Cables
     3) Transport control signals
  */
 
+struct Cables //                            1) define an empty struct for each of your 10 types.       
+{
+    //Length in cm                   2) copied and commented-out plain-english property
+    int lengthInCm = 8;  //                   3) member variables with relevant data types.
+    //Color   
+    std::string color = "Red";     
+    //Amount of internal wires (int)   
+    int amountOfinternalWires= 5;              
+    //External material (std::string)       
+    std::string externalMatrerial = "Plastic";               
+    //Internal wire thickness in um (int)            
+    int numberOfcoilwirings = 200;               
+    
+    struct Wire      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        float thicknessInUm = 500.0f;
+        float resistancePerMeterInOhms = 3.0f;   
+        std::string material = "copper";
+        std::string isolation = "plastic";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        double sendAudioSignal(std::string voltageSignalFile = "boom.v");
+        // returns power in watts consumed
+        float applyVoltage(float voltageLevel, double durationInMicroSeconds);
+        // returns resulting current
+        void sendBinaryCode(double frequency, int binaryCode = 1100101010);
+        // 
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    double holdDeviceOverUsersHead();
+    // returns weight in grams over user head
+    float transportAudioSignals(Wire wireA, std::string audioFile = "boom.wav");
+    // returns microseconds taken to send the audio
+    float transportControlSignals(Wire wireB, int binaryCode = 1100101010 );
+    // returns microseconds taken to send the code
+    
+    //5) a member variable whose type is a UDT.
+    Wire wireSelectedForSignal;
+};
+
 /*
 Thing 7) Bluetooth interface
 5 properties:
@@ -506,6 +550,50 @@ Thing 7) Bluetooth interface
     2) Send play signal
     3) Send battery level
  */
+
+struct BluetoothInterface //                            1) define an empty struct for each of your 10 types.       
+{
+    //Bluetooth version                   2) copied and commented-out plain-english property
+    double bluetoothVersion = 2.0;  //                   3) member variables with relevant data types.
+    //Transmission power in mW (double)  
+    double transmissionPowerInMw = 300;     
+    //Receiver sesitivity in dB (double)   
+    double receiverSensitivityInDb= 5.0;              
+    //Distance coverage in meters (int)      
+    int distanceCoverageInMeters = 10;               
+    //Data bandwith capacity in Mbps (float)          
+    float dataBwCapacityInMbps = 20.0f;               
+    
+    struct WirelessChannel      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        float centerFrequencyInGhz = 2.7f;
+        float frequencyWidthInGhz = 0.01f;
+        double channelCapacityInMbps = 20;
+        std::string channelName = "23";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        double sendAudioSignal(std::string voltageSignalFile = "boom.v");
+        // returns power in watts consumed
+        float applyVoltage(float voltageLevel, double durationInMicroSeconds);
+        // returns resulting current
+        void sendBinaryCode(double frequency, int binaryCode = 1100101010);
+        // 
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    double receiveAudio();
+    // returns weight in grams over user head
+    float sendPlaySignal(WirelessChannel wirelessChannelA, std::string audioFile = "boom.wav");
+    // returns microseconds taken to send the audio
+    float sendBatteryLevel(WirelessChannel wirelessChannelB, int binaryCode = 1100101010 );
+    // returns microseconds taken to send the code
+    
+    //5) a member variable whose type is a UDT.
+    WirelessChannel wirelessChannelSelected;
+};
 
 /*
 Thing 8) Logic circuit
