@@ -225,25 +225,26 @@ struct StationersShop //                            1) define an empty struct fo
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        void printDocument(std::string fileName, int numPagesPerSize, bool onesided = false); 
+        void printDocument(std::string fileName, float zoomPercentage, bool onesided = false); 
         //
         float printPhoto(int qualityIndex);
-        //
-        void moveToSellingOutbox(Paper paperB);
-        //
+        //Returns the seconds it took to print the photo
+        bool moveToSellingOutbox(Paper paperB);
+        //Returns if theres space on the selling outbox
     };
 
      //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    float makeAPhotocopy(int amountOfPages, bool isBlackAndWhite = true , bool onesided = false);
+    float makeAPhotocopy(Paper paperA, bool isBlackAndWhite = true , bool onesided = false);
     //1) returns the amount to be charged in USD
-    float takePassportPhoto(int amountOfCopiesToBePrinted, std::string sizeStandard);
+    float takePassportPhoto(Paper paperB, std::string sizeStandard);
     //2) returns the amount to be charged in USD
     void wrapAGift(std::string wrappingPaperModel); 
     //3)
 
     //5) a member variable whose type is a UDT.
-    Paper paperBeingSold;  
+    Paper paperToBeUsed;  
+};
 
 /*
 Thing 2) Wallet
@@ -285,21 +286,24 @@ struct Wallet //                            1) define an empty struct for each o
         //the parameter names are related to the work the function will perform.
         int identifyTheOwner(float costPerGallon, double fuelAmountInGallons = 2.0, bool requiresDiesel = false);
         // returns the Owner national id
-        void payLunch(std::string failureType, bool requiresTow = false);
+        void payLunch(std::string failureType, bool useCash = false);
         // returns the number of miles traveled
         int enterABuilding(bool includeUberLyftTrips);
         // returns the number of miles traveled
     };
 
-    //sell a paper
-    void sellAPaper(Paper paperA); //4) a member function whose parameter is a UDT.
-    //charge customer
-    float chargeCustomer(float discountPercentage); //3) returns the total amount charged.
-    //make a photocopy using a Paper
-    void makeAPhotocopy(Paper paperB);
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    std::string identifyTheOwner(CreditCard creditCardA);
+    // returns the Owner name and surname
+    bool payLunch(CreditCard creditCardB, float tipPercentage = 10.0);
+    // returns if payment was accepted using this credit card
+    bool enterABuilding(float walletOrientationToUseInDegrees = 0.0f);
+    // Returns if access token was accepted
     
     //5) a member variable whose type is a UDT.
-    Paper paperBeingSold;  
+    CreditCard creditCardSelected;
+};
 
 /*
 Thing 3) Laptop
@@ -310,10 +314,54 @@ Thing 3) Laptop
     4) screen size
     5) brand
 3 things it can do:
-    1) process docuemnts
+    1) read document
     2) surf the web
     3) take a picture
  */
+
+struct Laptop //                            1) define an empty struct for each of your 10 types.       
+{
+    //color                   2) copied and commented-out plain-english property
+    std::string color = "Black";  //                   3) member variables with relevant data types.
+    //weight    
+    float weightIngrams = 150.5f;     
+    //processor model    
+    std::string processorModel = "Corei3";              
+    //screen size         
+    int screenSizeInInches = 17;               
+    //brand              
+    std::string brand = "Lenovo";               
+    
+    struct File      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        bool isReadOnly = false;
+        float sizeInBytes = 2000.0f;        
+        std::string fullPath = "/root/file.jpg";
+        std::string fileType = "image";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        int identifyTheOwner(float costPerGallon, double fuelAmountInGallons = 2.0, bool requiresDiesel = false);
+        // returns the Owner national id
+        void payLunch(std::string failureType, bool useCash = false);
+        // returns the number of miles traveled
+        int enterABuilding(bool includeUberLyftTrips);
+        // returns the number of miles traveled
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    std::string readDocuemnt(File inputFile);
+    // returns file plain text conversion
+    float surfTheWeb(std::string url = "www.google.com", bool incognitoMode = false);
+    // returns nanoseconds required to display the web page
+    void TakeAPicture(File outputFile, float lidOrientationInDegrees = 55.0f);
+    //
+    
+    //5) a member variable whose type is a UDT.
+    File fileBeingProcessed;
+};
 
 /*
 Thing 4) Swiss Army Knife
@@ -329,6 +377,50 @@ Thing 4) Swiss Army Knife
     3) unscrew 
  */
 
+struct SwissArmyKnife //                            1) define an empty struct for each of your 10 types.       
+{
+    //color                   2) copied and commented-out plain-english property
+    std::string color = "Red";  //                   3) member variables with relevant data types.
+    //amount of tools   
+    int amountOfTools = 8;     
+    //weight   
+    float weightInGrams= 40.0f;              
+    //year of manufacturing         
+    int manufactureYear = 2019;               
+    //market value              
+    float marketValueInUsd = 75.0f;               
+    
+    struct Tool      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        bool isEdgy = true;
+        float lentghInCm = 10.0f;
+        float thicknessInMm = 1.0f;   
+        std::string toolName = "knife1";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        bool rotate(float degreesToMove, double speedInMmPerSecond = 2.0);
+        // returns true if open or close limit reached
+        float fullyOpen(double speedInMmPerSecond = 2.0);
+        // returns seconds taken to open the tool
+        float fullyClose(double speedInMmPerSecond = 2.0);
+        // returns seconds taken to close the tool
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    float cutFood(Tool toolA, float pressureToApply);
+    // returns secondsTaken to cut the food
+    bool openABottle(double speedInDegreesPerSecond, bool isACorkLid = false);
+    // returns if gas was expeled
+    void unscrew(Tool toolB);
+    //
+    
+    //5) a member variable whose type is a UDT.
+    Tool toolBeingUsed;
+};
+
 /*
 Thing 5) Speakers
 5 properties:
@@ -342,6 +434,50 @@ Thing 5) Speakers
     2) Reduce external noise
     3) Play ultrasound
  */
+
+struct Speakers //                            1) define an empty struct for each of your 10 types.       
+{
+    //Amount of devices                   2) copied and commented-out plain-english property
+    int amountOfDevices = 4;  //                   3) member variables with relevant data types.
+    //Size in cm   
+    int sizeInCm = 1;     
+    //Maximum power in watts (double)   
+    double maxPowerWatts= 5.0;              
+    //Maximum decibels capacity (double)         
+    double maxDecibPower = 70;               
+    //Number of wirings of the coil (int)            
+    int numberOfcoilwirings = 200;               
+    
+    struct SoundFile      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        float sampleRateInKhz = 44.0f;
+        float soundLengthInMs = 3000.0f;   
+        std::string fileFormat = "wav";
+        std::string filePath = "/root/ding.wav";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        bool verifyIfIsUltrasound();
+        // returns true if contains frequencies exceeding 20Khz
+        float compressFile(int compressionLevel = 3);
+        // returns compression ratio achieved
+        void applyBandPassFilter(double freqA, double freqB);
+        // 
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    float playAudibleSound(SoundFile soundFileA, double level = 6.0);
+    // returns seconds taken to play the sound
+    bool reduceExternalNoise(int duration);
+    // returns if noise reduction already active
+    float playUltraSound(SoundFile soundFileB, double level);
+    // returns seconds taken to play the sound
+    
+    //5) a member variable whose type is a UDT.
+    SoundFile soundFileBeingProcessed;
+};
 
 /*
 Thing 6) Cables
