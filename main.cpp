@@ -225,22 +225,24 @@ struct StationersShop //                            1) define an empty struct fo
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        void printDocument(std::string fileName, float zoomPercentage, bool onesided = false); 
         //
-        float printPhoto(int qualityIndex);
+        void printDocument(std::string fileName, float zoomPercentage, bool onesided = false); 
         //Returns the seconds it took to print the photo
-        bool moveToSellingOutbox(Paper paperB);
+        float printPhoto(int qualityIndex);
         //Returns if theres space on the selling outbox
+        bool moveToSellingOutbox(Paper paperB);
+        
     };
 
      //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    float makeAPhotocopy(Paper paperA, bool isBlackAndWhite = true , bool onesided = false);
     //1) returns the amount to be charged in USD
-    float takePassportPhoto(Paper paperB, std::string sizeStandard);
+    float makeAPhotocopy(Paper paperA, bool isBlackAndWhite = true , bool onesided = false);
     //2) returns the amount to be charged in USD
-    void wrapAGift(std::string wrappingPaperModel); 
+    float takePassportPhoto(Paper paperB, std::string sizeStandard);
     //3)
+    void wrapAGift(std::string wrappingPaperModel); 
+
 
     //5) a member variable whose type is a UDT.
     Paper paperToBeUsed;  
@@ -277,29 +279,30 @@ struct Wallet //                            1) define an empty struct for each o
     {
         //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
         bool isInternational = true;
-        float widthInCm = 200.0f;        
+        float widthInCm = 200.0f;
+        double cardNumber = 23344331776;
         float availableCreditInUsd = 1400.0f;
         std::string bank = "HSBC";
         std::string program = "flyingSilver";
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        int identifyTheOwner(float costPerGallon, double fuelAmountInGallons = 2.0, bool requiresDiesel = false);
-        // returns the Owner national id
-        void payLunch(std::string failureType, bool useCash = false);
-        // returns the number of miles traveled
-        int enterABuilding(bool includeUberLyftTrips);
-        // returns the number of miles traveled
+        // returns the transaction id
+        int payInPOS(bool useChip = true);
+        // returns the provider platform
+        std::string payOnline(std::string url, bool requiresToken = false);
+        // returns the available credit of the card
+        float getAvailableCredit();
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    std::string identifyTheOwner(CreditCard creditCardA);
     // returns the Owner name and surname
-    bool payLunch(CreditCard creditCardB, float tipPercentage = 10.0);
+    std::string identifyTheOwner(CreditCard creditCardA);
     // returns if payment was accepted using this credit card
-    bool enterABuilding(float walletOrientationToUseInDegrees = 0.0f);
+    bool payLunch(CreditCard creditCardB, float tipPercentage = 10.0);
     // Returns if access token was accepted
+    bool enterABuilding(float walletOrientationToUseInDegrees = 0.0f);
     
     //5) a member variable whose type is a UDT.
     CreditCard creditCardSelected;
@@ -342,22 +345,23 @@ struct Laptop //                            1) define an empty struct for each o
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        int identifyTheOwner(float costPerGallon, double fuelAmountInGallons = 2.0, bool requiresDiesel = false);
-        // returns the Owner national id
-        void payLunch(std::string failureType, bool useCash = false);
-        // returns the number of miles traveled
-        int enterABuilding(bool includeUberLyftTrips);
-        // returns the number of miles traveled
+        // returns file content in plain text
+        std::string readFile(int startPosition, int endPosition);
+        // replace file with content
+        void replaceFile(std::string content);
+        // returns if file was successfully deleted
+        bool deleteFile(bool askForConfirmation);
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    std::string readDocuemnt(File inputFile);
+
     // returns file plain text conversion
-    float surfTheWeb(std::string url = "www.google.com", bool incognitoMode = false);
+    std::string readDocument(File inputFile);
     // returns nanoseconds required to display the web page
-    void TakeAPicture(File outputFile, float lidOrientationInDegrees = 55.0f);
+    float surfTheWeb(std::string url = "www.google.com", bool incognitoMode = false);
     //
+    void TakeAPicture(File outputFile, float lidOrientationInDegrees = 55.0f);
     
     //5) a member variable whose type is a UDT.
     File fileBeingProcessed;
@@ -400,22 +404,22 @@ struct SwissArmyKnife //                            1) define an empty struct fo
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        bool rotate(float degreesToMove, double speedInMmPerSecond = 2.0);
         // returns true if open or close limit reached
-        float fullyOpen(double speedInMmPerSecond = 2.0);
+        bool rotate(float degreesToMove, double speedInMmPerSecond = 2.0);
         // returns seconds taken to open the tool
-        float fullyClose(double speedInMmPerSecond = 2.0);
+        float fullyOpen(double speedInMmPerSecond = 2.0);
         // returns seconds taken to close the tool
+        float fullyClose(double speedInMmPerSecond = 2.0);
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    float cutFood(Tool toolA, float pressureToApply);
     // returns secondsTaken to cut the food
-    bool openABottle(double speedInDegreesPerSecond, bool isACorkLid = false);
+    float cutFood(Tool toolA, float pressureToApply);
     // returns if gas was expeled
-    void unscrew(Tool toolB);
+    bool openABottle(double speedInDegreesPerSecond, bool isACorkLid = false);
     //
+    void unscrew(Tool toolB);
     
     //5) a member variable whose type is a UDT.
     Tool toolBeingUsed;
@@ -458,22 +462,22 @@ struct Speakers //                            1) define an empty struct for each
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        bool verifyIfIsUltrasound();
         // returns true if contains frequencies exceeding 20Khz
-        float compressFile(int compressionLevel = 3);
+        bool verifyIfIsUltrasound();
         // returns compression ratio achieved
-        void applyBandPassFilter(double freqA, double freqB);
+        float compressFile(int compressionLevel = 3);
         // 
+        void applyBandPassFilter(double freqA, double freqB);
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
+    // returns seconds taken to play the sound
     float playAudibleSound(SoundFile soundFileA, double level = 6.0);
-    // returns seconds taken to play the sound
-    bool activateNoiseReduction(int duration);
     // returns if noise reduction already active
-    float playUltraSound(SoundFile soundFileB, double level);
+    bool activateNoiseReduction(int duration);
     // returns seconds taken to play the sound
+    float playUltraSound(SoundFile soundFileB, double level);
     
     //5) a member variable whose type is a UDT.
     SoundFile soundFileBeingPlayed;
@@ -516,22 +520,22 @@ struct Cables //                            1) define an empty struct for each o
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        double sendAudioSignal(std::string voltageSignalFile = "boom.v");
         // returns power in watts consumed
-        float applyVoltage(float voltageLevel, double durationInMicroSeconds);
+        double sendAudioSignal(std::string voltageSignalFile = "boom.v");
         // returns resulting current
+        float applyVoltage(float voltageLevel, double durationInMicroSeconds);
+        //
         void sendBinaryCode(double frequency, int binaryCode = 1100101010);
-        // 
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    double holdDeviceOverUsersHead();
     // returns weight in grams over user head
-    float transportAudioSignals(Wire wireA, std::string audioFile = "boom.wav");
+    double holdDeviceOverUsersHead();
     // returns microseconds taken to send the audio
-    float transportControlSignals(Wire wireB, int binaryCode = 1100101010 );
+    float transportAudioSignals(Wire wireA, std::string audioFile = "boom.wav");
     // returns microseconds taken to send the code
+    float transportControlSignals(Wire wireB, int binaryCode = 1100101010 );
     
     //5) a member variable whose type is a UDT.
     Wire wireSelectedForSignal;
@@ -574,22 +578,22 @@ struct BluetoothInterface //                            1) define an empty struc
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        bool testIfChannelAvailable();
         // returns true if channel is in silence
-        int listenChannel(float sensitivityInDb, double durationInMicroSeconds);
+        bool testIfChannelAvailable();
         // returns binary code being received
+        int listenChannel(float sensitivityInDb, double durationInMicroSeconds);
+        //
         void sendBinaryCode(double frequency, int binaryCode = 1100101010);
-        // 
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    float receiveAudio(WirelessChannel wirelessChannelC, double rxAmplification);
     // returns average level of audio signal
-    double sendPlaySignal(WirelessChannel wirelessChannelA);
+    float receiveAudio(WirelessChannel wirelessChannelC, double rxAmplification);
     // returns microseconds taken to send the audio
-    double sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery = true );
+    double sendPlaySignal(WirelessChannel wirelessChannelA);
     // returns batery charge in percentage
+    double sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery = true );
     
     //5) a member variable whose type is a UDT.
     WirelessChannel wirelessChannelSelected;
@@ -633,22 +637,22 @@ struct LogicCircuit //                            1) define an empty struct for 
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        bool testIfBusAvailable();
         // returns true if bus is in silence
-        int readDigitalBus(int wireNumber, bool stopWhenAllzeros = true);
+        bool testIfBusAvailable();
         // returns binary code being received
+        int readDigitalBus(int wireNumber, bool stopWhenAllzeros = true);
+        //
         void sendAudioSignal(int wireNumber, std::string audioCode);
-        // 
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    float generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel = 10.0f);
     // returns average level of audio signal
-    void generateVoiceInformation(BusChannel busChannel, std::string stringToSend = "Power On");
+    float generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel = 10.0f);
     //
-    double monitorBatteryCharge(BusChannel batteryBusToRead);
+    void generateVoiceInformation(BusChannel busChannel, std::string stringToSend = "Power On");
     // returns batery charge in percentage
+    double monitorBatteryCharge(BusChannel batteryBusToRead);
     
     //5) a member variable whose type is a UDT.
     BusChannel busChannelBeingUsed;
@@ -692,22 +696,22 @@ struct Buttons //                            1) define an empty struct for each 
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        bool testIfBusAvailable();
         // returns true if bus is in silence
-        bool pressSwitch(float timePressingInMilliseconds = 200, float pressureApplied = 5.0f);
+        bool testIfBusAvailable();
         // returns true if action was completed successfully
-        void sendAudioSignal(int wireNumber, std::string audioCode);
+        bool pressSwitch(float timePressingInMilliseconds = 200, float pressureApplied = 5.0f);
         // 
+        void sendAudioSignal(int wireNumber, std::string audioCode);
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    bool powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed = 2);
     // returns true if device was successfully turned on
-    void changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks = 1 );
+    bool powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed = 2);
     //
-    std::string answerACall(CircuitSwitch circuitSwitchB);
+    void changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks = 1 );
     // returns incoming calling number
+    std::string answerACall(CircuitSwitch circuitSwitchB);
     
     //5) a member variable whose type is a UDT.
     CircuitSwitch circuitSwitchBeingUsed;
@@ -751,25 +755,25 @@ struct WirelessHeadphone //                            1) define an empty struct
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
-        bool pingDevice(int numberOfPings = 4, double millisencodsBetweenPings = 1000);
         // returns true if ping successful
-        std::string listenDevice(int subChannelId = 2, bool isCtlChannel = false);
+        bool pingDevice(int numberOfPings = 4, double millisencodsBetweenPings = 1000);
         // returns data received
+        std::string listenDevice(int subChannelId = 2, bool isCtlChannel = false);
+        //
         void sendAudioSignal(std::string audioCode);
-        // 
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    bool PlaySound(RemoteDevice RemoteDeviceA, double audioLevel = 2);
     // returns true if sound was successfully played
-    double RecordSound(RemoteDevice RemoteDeviceB, int amountOfClicks = 1 );
+    bool playSound(RemoteDevice remoteDeviceA, double audioLevel = 2);
     // returns sound length in milliseconds
-    std::string AnswerACall(RemoteDevice RemoteDeviceB);
+    double recordSound(RemoteDevice remoteDeviceB, int amountOfClicks = 1 );
     // returns audio data from remote device
+    std::string answerACall(RemoteDevice remoteDeviceB);
     
     //5) a member variable whose type is a UDT.
-    RemoteDevice RemoteDeviceBeingUsed;
+    RemoteDevice remoteDeviceBeingUsed;
 };
 
 /*
