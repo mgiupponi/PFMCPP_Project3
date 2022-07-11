@@ -42,9 +42,9 @@ Thing: Car Wash
  */
 
 #if false //ignore these #if #endif lines. they're just here to prevent compiler errors.
-struct CarWash
+#struct CarWash
 {
-
+    
 };
 #endif
 /*
@@ -684,30 +684,30 @@ struct Buttons //                            1) define an empty struct for each 
     struct CircuitSwitch      
     {
         //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
-        int amountOfWires = 5;
-        int amountOfdigitalwires = 2;
-        double maxVoltage = 5;
-        std::string busSource = "bluetoothAudioReceiver";
-        std::string busDestination = "centralCircuit";
+        bool normallyOpen = true;
+        int amountOfPins = 2;
+        double lengthInMm = 7;
+        double widthInMm = 7;
+        std::string placementOntheCircuit = "powerModule";
 
         //3) a member function.  it has multiple arguments, some with default values.
         //the parameter names are related to the work the function will perform.
         bool testIfBusAvailable();
         // returns true if bus is in silence
-        int readDigitalBus(int wireNumber, bool stopWhenAllzeros = true);
-        // returns binary code being received
+        bool pressSwitch(float timePressingInMilliseconds = 200, float pressureApplied = 5.0f);
+        // returns true if action was completed successfully
         void sendAudioSignal(int wireNumber, std::string audioCode);
         // 
     };
 
     //3) a member function.  it has multiple arguments, some with default values.
     //the parameter names are related to the work the function will perform.
-    float powerOnTheDevice(CircuitSwitch circuitSwitchA, BusChannel rxBluetoothBus, float amplificationLevel = 10.0f);
-    // returns average level of audio signal
-    void changeSong(CircuitSwitch circuitSwitchB, std::string stringToSend = "Power On");
+    bool powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed = 2);
+    // returns true if device was successfully turned on
+    void changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks = 1 );
     //
-    double answerACall(CircuitSwitch circuitSwitchB);
-    // returns batery charge in percentage
+    std::string answerACall(CircuitSwitch circuitSwitchB);
+    // returns incoming calling number
     
     //5) a member variable whose type is a UDT.
     CircuitSwitch circuitSwitchBeingUsed;
@@ -726,6 +726,51 @@ Thing 10) Wireless headphone
     2) Record sound
     3) Answer a call
  */
+
+struct WirelessHeadphone //                            1) define an empty struct for each of your 10 types.       
+{
+    //Speakers                        2) copied and commented-out plain-english property
+    Speakers speakers;  //                   3) member variables with relevant data types.
+    //Cables
+    Cables cables;     
+    //Bluetooth interface 
+    BluetoothInterface bluetoothInterface;              
+    //Logic circuit   
+    LogicCircuit logicCircuit;               
+    //Buttons      
+    Buttons buttons;       
+
+    struct RemoteDevice      
+    {
+        //2) member variables with relevant data types.  the names are appropriate for the U.D.T.'s purpose.
+        bool callsEnabled = false;
+        double receivedPowerInDb = 20;
+        std::string remoteOS = "Windows10";
+        std::string deviceName = "MartinPC";
+        std::string MACAddress = "0f:de:12:3f:8a:01";
+
+        //3) a member function.  it has multiple arguments, some with default values.
+        //the parameter names are related to the work the function will perform.
+        bool pingDevice(int numberOfPings = 4, double millisencodsBetweenPings = 1000);
+        // returns true if ping successful
+        std::string listenDevice(int subChannelId = 2, bool isCtlChannel = false);
+        // returns data received
+        void sendAudioSignal(std::string audioCode);
+        // 
+    };
+
+    //3) a member function.  it has multiple arguments, some with default values.
+    //the parameter names are related to the work the function will perform.
+    bool PlaySound(RemoteDevice RemoteDeviceA, double audioLevel = 2);
+    // returns true if sound was successfully played
+    double RecordSound(RemoteDevice RemoteDeviceB, int amountOfClicks = 1 );
+    // returns sound length in milliseconds
+    std::string AnswerACall(RemoteDevice RemoteDeviceB);
+    // returns audio data from remote device
+    
+    //5) a member variable whose type is a UDT.
+    RemoteDevice RemoteDeviceBeingUsed;
+};
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
