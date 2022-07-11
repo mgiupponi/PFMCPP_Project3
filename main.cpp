@@ -42,7 +42,7 @@ Thing: Car Wash
  */
 
 #if false //ignore these #if #endif lines. they're just here to prevent compiler errors.
-#struct CarWash
+struct CarWash
 {
     
 };
@@ -679,7 +679,7 @@ struct Buttons //                            1) define an empty struct for each 
     //Material (std::string)   
     std::string material = "silicone";               
     //Area in mm2 (double)       
-    double areaInMm = 20.0f;               
+    double areaInMm = 20.0;               
     
     struct CircuitSwitch      
     {
