@@ -315,8 +315,8 @@ float Laptop::surfTheWeb(std::string url, bool incognitoMode)
 
 void Laptop::TakeAPicture(File outputFile, float lidOrientationInDegrees)
 {    
-    std::to_string(lidOrientationInDegrees);
-    outputFile.replaceFile("new file");
+    if (lidOrientationInDegrees > 5)
+        outputFile.fullPath.size();
 }
 
 struct SwissArmyKnife      
@@ -586,7 +586,8 @@ bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSeco
 }
 void Buttons::changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks)
 {
-    float temp = circuitSwitchB.amountOfPins + amountOfClicks;
+    if (amountOfClicks > 20)
+        circuitSwitchB.placementOntheCircuit.length();
 }
 std::string Buttons::answerACall(CircuitSwitch circuitSwitchB)
 {
