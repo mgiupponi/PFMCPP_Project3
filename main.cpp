@@ -109,6 +109,40 @@ struct CarWash
  */
 
 
+struct Foot
+{
+    int lengthInCm;
+
+    int stepForward()
+    {
+        return lengthInCm*3;
+    }
+
+    int stepSize()
+    {
+        return lengthInCm*3;
+    }
+
+};
+
+struct Person
+{
+    int age;
+    int height;
+    int distanceTraveled;
+    Foot leftFoot;
+    Foot rightFoot;
+
+    int run(int howFast, bool startwithLeftFoot)
+    {
+        if (startwithLeftFoot)
+        {
+            return leftFoot.stepForward() + rightFoot.stepForward();
+        }
+        return rightFoot.stepForward() + leftFoot.stepForward();
+    }
+
+};
 
 
 
@@ -156,6 +190,34 @@ struct StationersShop
     Paper paperToBeUsed;  
 };
 
+float StationersShop::makeAPhotocopy(Paper paperA, bool isBlackAndWhite, bool onesided)
+{    
+    float price = paperA.priceInUsd;
+    if (not isBlackAndWhite)
+    {
+         price = price*2;
+    }
+    if (not onesided)
+    {
+         price = price*2;
+    }
+    return price;
+}
+
+float StationersShop::takePassportPhoto(Paper paperB, std::string sizeStandard)
+{    
+    float price = paperB.priceInUsd;
+    if (sizeStandard.length() > 2)
+    {
+         price = price*2;
+    }
+    return price;
+}
+
+void StationersShop::wrapAGift(std::string wrappingPaperModel)
+{    
+    float price = wrappingPaperModel.length();
+}
 
 struct Wallet     
 {
@@ -186,6 +248,29 @@ struct Wallet
     CreditCard creditCardSelected;
 };
 
+std::string Wallet::identifyTheOwner(CreditCard creditCardA)
+{    
+    return std::to_string(creditCardA.cardNumber);
+}
+
+bool Wallet::payLunch(CreditCard creditCardB, float tipPercentage)
+{    
+    if (creditCardB.availableCreditInUsd > 50)
+    {
+         return true;
+    }
+    return false;
+}
+
+bool Wallet::enterABuilding(float walletOrientationToUseInDegrees)
+{    
+    if (walletOrientationToUseInDegrees > 45)
+    {
+         return true;
+    }
+    return false;
+}
+
 struct Laptop   
 {
     std::string color = "Black";
@@ -213,6 +298,26 @@ struct Laptop
     File fileBeingProcessed;
 };
 
+std::string Laptop::readDocument(File inputFile)
+{    
+    return inputFile.fullPath;
+}
+
+float Laptop::surfTheWeb(std::string url, bool incognitoMode)
+{    
+    float output = url.length();
+    if (incognitoMode)
+    {
+         output *= 2;
+    }
+    return output;
+}
+
+void Laptop::TakeAPicture(File outputFile, float lidOrientationInDegrees)
+{    
+    float fileLight = lidOrientationInDegrees + outputFile.sizeInBytes;
+}
+
 struct SwissArmyKnife      
 {
     std::string color = "Red";
@@ -236,8 +341,30 @@ struct SwissArmyKnife
     float cutFood(Tool toolA, float pressureToApply);
     bool openABottle(double speedInDegreesPerSecond, bool isACorkLid = false);
     void unscrew(Tool toolB);
+
     Tool toolBeingUsed;
 };
+
+float SwissArmyKnife::cutFood(Tool toolA, float pressureToApply)
+{    
+    float output = toolA.thicknessInMm - pressureToApply;
+    return output;
+}
+bool SwissArmyKnife::openABottle(double speedInDegreesPerSecond, bool isACorkLid)
+{    
+    if (speedInDegreesPerSecond > 20)
+    {
+         return false;
+    } else if (isACorkLid)
+    {
+        return true;
+    }
+    return false;
+}
+void SwissArmyKnife::unscrew(Tool toolB)
+{    
+    float temp = toolB.lentghInCm;
+}
 
 struct Speakers    
 {
@@ -266,6 +393,27 @@ struct Speakers
     SoundFile soundFileBeingPlayed;
 };
 
+float Speakers::playAudibleSound(SoundFile soundFileA, double level)
+{    
+    float output = soundFileA.soundLengthInMs;
+    return output;
+}
+
+bool Speakers::activateNoiseReduction(int duration)
+{    
+    if (duration > 50)
+    {
+         return false;
+    }
+    return true;
+}
+
+float Speakers::playUltraSound(SoundFile soundFileB, double level)
+{  
+    float output = soundFileB.soundLengthInMs + level;
+    return output;
+}
+
 struct Cables      
 {
     int lengthInCm = 8;
@@ -288,10 +436,26 @@ struct Cables
 
     double holdDeviceOverUsersHead();
     float transportAudioSignals(Wire wireA, std::string audioFile = "boom.wav");
-    float transportControlSignals(Wire wireB, int binaryCode = 1100101010 );
+    float transportControlSignals(Wire wireB, int binaryCode = 1100101010);
     
     Wire wireSelectedForSignal;
 };
+
+double Cables::holdDeviceOverUsersHead()
+{    
+    double output = 10.0;
+    return output;
+}
+float Cables::transportAudioSignals(Wire wireA, std::string audioFile)
+{    
+    float output = wireA.resistancePerMeterInOhms + audioFile.length();
+    return output;
+}
+float Cables::transportControlSignals(Wire wireB, int binaryCode)
+{    
+    float output = wireB.resistancePerMeterInOhms + binaryCode;
+    return output;
+}
 
 struct BluetoothInterface      
 {
@@ -319,6 +483,26 @@ struct BluetoothInterface
     
     WirelessChannel wirelessChannelSelected;
 };
+
+float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, double rxAmplification)
+{    
+    float output = wirelessChannelC.centerFrequencyInGhz + rxAmplification;
+    return output;
+}
+double BluetoothInterface::sendPlaySignal(WirelessChannel wirelessChannelA)
+{    
+    double output = wirelessChannelA.centerFrequencyInGhz;
+    return output;
+}
+double BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery)
+{    
+    double output = wirelessChannelB.centerFrequencyInGhz;
+    if (reCheckBattery)
+    {
+         return output = output*2;
+    }
+    return output;
+}
 
 struct LogicCircuit    
 {
@@ -348,6 +532,21 @@ struct LogicCircuit
     BusChannel busChannelBeingUsed;
 };
 
+float LogicCircuit::generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel)
+{    
+    float output = txSpeakersChannel.maxVoltage*rxBluetoothBus.amountOfdigitalwires*amplificationLevel;
+    return output;
+}
+void LogicCircuit::generateVoiceInformation(BusChannel busChannel, std::string stringToSend)
+{    
+    float temp = busChannel.amountOfdigitalwires+stringToSend.length();
+}
+double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
+{    
+    double output = batteryBusToRead.amountOfdigitalwires;
+    return output;
+}
+
 struct Buttons   
 {
     int Amount = 3;
@@ -375,6 +574,26 @@ struct Buttons
     
     CircuitSwitch circuitSwitchBeingUsed;
 };
+
+bool SwissArmyKnife::openABottle(double speedInDegreesPerSecond, bool isACorkLid)
+{    
+    if (speedInDegreesPerSecond > 20)
+    {
+         return false;
+    } else if (isACorkLid)
+    {
+        return true;
+    }
+    return false;
+}
+void SwissArmyKnife::unscrew(Tool toolB)
+{    
+    float temp = toolB.lentghInCm;
+}
+std::string Laptop::readDocument(File inputFile)
+{    
+    return inputFile.fullPath;
+}
 
 struct WirelessHeadphone       
 {
