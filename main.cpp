@@ -137,9 +137,9 @@ struct Person
     {
         if (startwithLeftFoot)
         {
-            return leftFoot.stepForward() + rightFoot.stepForward();
+            return leftFoot.stepForward() + rightFoot.stepForward()*howFast;
         }
-        return rightFoot.stepForward() + leftFoot.stepForward();
+        return rightFoot.stepForward() + leftFoot.stepForward()*howFast;
     }
 
 };
@@ -216,7 +216,7 @@ float StationersShop::takePassportPhoto(Paper paperB, std::string sizeStandard)
 
 void StationersShop::wrapAGift(std::string wrappingPaperModel)
 {    
-    float price = wrappingPaperModel.length();
+    wrappingPaperModel.size();
 }
 
 struct Wallet     
@@ -255,7 +255,7 @@ std::string Wallet::identifyTheOwner(CreditCard creditCardA)
 
 bool Wallet::payLunch(CreditCard creditCardB, float tipPercentage)
 {    
-    if (creditCardB.availableCreditInUsd > 50)
+    if (creditCardB.availableCreditInUsd*tipPercentage > 50)
     {
          return true;
     }
@@ -315,7 +315,8 @@ float Laptop::surfTheWeb(std::string url, bool incognitoMode)
 
 void Laptop::TakeAPicture(File outputFile, float lidOrientationInDegrees)
 {    
-    float fileLight = lidOrientationInDegrees + outputFile.sizeInBytes;
+    std::to_string(lidOrientationInDegrees);
+    outputFile.replaceFile("new file");
 }
 
 struct SwissArmyKnife      
@@ -363,7 +364,7 @@ bool SwissArmyKnife::openABottle(double speedInDegreesPerSecond, bool isACorkLid
 }
 void SwissArmyKnife::unscrew(Tool toolB)
 {    
-    float temp = toolB.lentghInCm;
+    std::to_string(toolB.lentghInCm);
 }
 
 struct Speakers    
@@ -395,7 +396,7 @@ struct Speakers
 
 float Speakers::playAudibleSound(SoundFile soundFileA, double level)
 {    
-    float output = soundFileA.soundLengthInMs;
+    float output = soundFileA.soundLengthInMs * static_cast<float>(level);
     return output;
 }
 
@@ -410,7 +411,7 @@ bool Speakers::activateNoiseReduction(int duration)
 
 float Speakers::playUltraSound(SoundFile soundFileB, double level)
 {  
-    float output = soundFileB.soundLengthInMs + level;
+    float output = soundFileB.soundLengthInMs + static_cast<float>(level);
     return output;
 }
 
@@ -486,17 +487,17 @@ struct BluetoothInterface
 
 float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, double rxAmplification)
 {    
-    float output = wirelessChannelC.centerFrequencyInGhz + rxAmplification;
+    float output = wirelessChannelC.centerFrequencyInGhz + static_cast<float>(rxAmplification);
     return output;
 }
 double BluetoothInterface::sendPlaySignal(WirelessChannel wirelessChannelA)
 {    
-    double output = wirelessChannelA.centerFrequencyInGhz;
+    double output = static_cast<double>(wirelessChannelA.centerFrequencyInGhz);
     return output;
 }
 double BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery)
 {    
-    double output = wirelessChannelB.centerFrequencyInGhz;
+    double output = static_cast<double>(wirelessChannelB.centerFrequencyInGhz);
     if (reCheckBattery)
     {
          return output = output*2;
@@ -534,12 +535,13 @@ struct LogicCircuit
 
 float LogicCircuit::generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel)
 {    
-    float output = txSpeakersChannel.maxVoltage*rxBluetoothBus.amountOfdigitalwires*amplificationLevel;
+    float output = static_cast<float>(txSpeakersChannel.maxVoltage)*rxBluetoothBus.amountOfdigitalwires*amplificationLevel;
     return output;
 }
 void LogicCircuit::generateVoiceInformation(BusChannel busChannel, std::string stringToSend)
 {    
-    float temp = busChannel.amountOfdigitalwires+stringToSend.length();
+    busChannel.busSource.length();
+    stringToSend.length();
 }
 double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
 {    
@@ -575,24 +577,20 @@ struct Buttons
     CircuitSwitch circuitSwitchBeingUsed;
 };
 
-bool SwissArmyKnife::openABottle(double speedInDegreesPerSecond, bool isACorkLid)
+bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed)
 {    
-    if (speedInDegreesPerSecond > 20)
-    {
+    if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20)
          return false;
-    } else if (isACorkLid)
-    {
-        return true;
-    }
-    return false;
+    
+    return true;
 }
-void SwissArmyKnife::unscrew(Tool toolB)
-{    
-    float temp = toolB.lentghInCm;
+void Buttons::changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks)
+{
+    float temp = circuitSwitchB.amountOfPins + amountOfClicks;
 }
-std::string Laptop::readDocument(File inputFile)
-{    
-    return inputFile.fullPath;
+std::string Buttons::answerACall(CircuitSwitch circuitSwitchB)
+{
+    return circuitSwitchB.placementOntheCircuit;
 }
 
 struct WirelessHeadphone       
@@ -622,6 +620,24 @@ struct WirelessHeadphone
     
     RemoteDevice remoteDeviceBeingUsed;
 };
+
+bool WirelessHeadphone::playSound(RemoteDevice remoteDeviceA, double audioLevel)
+{    
+    if (remoteDeviceA.receivedPowerInDb + audioLevel > 20)
+         return false;
+    
+    return true;
+}
+double WirelessHeadphone::recordSound(RemoteDevice remoteDeviceB, int amountOfClicks)
+{    
+    double output = remoteDeviceB.receivedPowerInDb * amountOfClicks;
+    return output;
+}
+std::string WirelessHeadphone::answerACall(RemoteDevice remoteDeviceB)
+{
+    return remoteDeviceB.deviceName;
+}
+
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
