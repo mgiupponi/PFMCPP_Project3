@@ -137,9 +137,9 @@ struct Person
     {
         if (startwithLeftFoot)
         {
-            return leftFoot.stepForward() + rightFoot.stepForward()*howFast;
+            return leftFoot.stepForward() + rightFoot.stepForward() * howFast;
         }
-        return rightFoot.stepForward() + leftFoot.stepForward()*howFast;
+        return rightFoot.stepForward() + leftFoot.stepForward() * howFast;
     }
 
 };
@@ -193,13 +193,13 @@ struct StationersShop
 float StationersShop::makeAPhotocopy(Paper paperA, bool isBlackAndWhite, bool onesided)
 {    
     float price = paperA.priceInUsd;
-    if (not isBlackAndWhite)
+    if (isBlackAndWhite == false)
     {
-         price = price*2;
+         price = price * 2;
     }
-    if (not onesided)
+    if (onesided == false)
     {
-         price = price*2;
+         price = price * 2;
     }
     return price;
 }
@@ -209,14 +209,14 @@ float StationersShop::takePassportPhoto(Paper paperB, std::string sizeStandard)
     float price = paperB.priceInUsd;
     if (sizeStandard.length() > 2)
     {
-         price = price*2;
+         price = price * 2;
     }
     return price;
 }
 
 void StationersShop::wrapAGift(std::string wrappingPaperModel)
 {    
-    wrappingPaperModel.size();
+    std::cout << wrappingPaperModel.size();
 }
 
 struct Wallet     
@@ -389,7 +389,7 @@ struct Speakers
 
     float playAudibleSound(SoundFile soundFileA, double level = 6.0);
     bool activateNoiseReduction(int duration);
-    float playUltraSound(SoundFile soundFileB, double level);
+    float playUltraSound(SoundFile soundFileB, float level);
     
     SoundFile soundFileBeingPlayed;
 };
@@ -409,9 +409,9 @@ bool Speakers::activateNoiseReduction(int duration)
     return true;
 }
 
-float Speakers::playUltraSound(SoundFile soundFileB, double level)
+float Speakers::playUltraSound(SoundFile soundFileB, float level)
 {  
-    float output = soundFileB.soundLengthInMs + static_cast<float>(level);
+    float output = soundFileB.soundLengthInMs + level;
     return output;
 }
 
@@ -478,29 +478,29 @@ struct BluetoothInterface
         void sendBinaryCode(double frequency, int binaryCode = 1100101010);
     };
 
-    float receiveAudio(WirelessChannel wirelessChannelC, double rxAmplification);
-    double sendPlaySignal(WirelessChannel wirelessChannelA);
-    double sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery = true );
+    float receiveAudio(WirelessChannel wirelessChannelC, float rxAmplification);
+    float sendPlaySignal(WirelessChannel wirelessChannelA);
+    float sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery = true );
     
     WirelessChannel wirelessChannelSelected;
 };
 
-float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, double rxAmplification)
+float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, float rxAmplification)
 {    
-    float output = wirelessChannelC.centerFrequencyInGhz + static_cast<float>(rxAmplification);
+    float output = wirelessChannelC.centerFrequencyInGhz + rxAmplification;
     return output;
 }
-double BluetoothInterface::sendPlaySignal(WirelessChannel wirelessChannelA)
+float BluetoothInterface::sendPlaySignal(WirelessChannel wirelessChannelA)
 {    
-    double output = static_cast<double>(wirelessChannelA.centerFrequencyInGhz);
+    float output = wirelessChannelA.centerFrequencyInGhz;
     return output;
 }
-double BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery)
+float BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery)
 {    
-    double output = static_cast<double>(wirelessChannelB.centerFrequencyInGhz);
+    float output = wirelessChannelB.centerFrequencyInGhz;
     if (reCheckBattery)
     {
-         return output = output*2;
+         return output = output * 2;
     }
     return output;
 }
@@ -517,7 +517,7 @@ struct LogicCircuit
     {
         int amountOfWires = 5;
         int amountOfdigitalwires = 2;
-        double maxVoltage = 5;
+        float maxVoltage = 5.0f;
         std::string busSource = "bluetoothAudioReceiver";
         std::string busDestination = "centralCircuit";
 
@@ -535,7 +535,7 @@ struct LogicCircuit
 
 float LogicCircuit::generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel)
 {    
-    float output = static_cast<float>(txSpeakersChannel.maxVoltage)*rxBluetoothBus.amountOfdigitalwires*amplificationLevel;
+    float output = txSpeakersChannel.maxVoltage * rxBluetoothBus.amountOfdigitalwires * amplificationLevel;
     return output;
 }
 void LogicCircuit::generateVoiceInformation(BusChannel busChannel, std::string stringToSend)
