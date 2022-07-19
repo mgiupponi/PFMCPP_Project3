@@ -356,7 +356,8 @@ bool SwissArmyKnife::openABottle(double speedInDegreesPerSecond, bool isACorkLid
     if (speedInDegreesPerSecond > 20)
     {
          return false;
-    } else if (isACorkLid)
+    } 
+    else if (isACorkLid)
     {
         return true;
     }
@@ -500,7 +501,7 @@ float BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, boo
     float output = wirelessChannelB.centerFrequencyInGhz;
     if (reCheckBattery)
     {
-         return output = output * 2;
+        return output = output * 2;
     }
     return output;
 }
@@ -580,7 +581,7 @@ struct Buttons
 bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed)
 {    
     if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20)
-         return false;
+        return false;
     
     return true;
 }
@@ -625,7 +626,7 @@ struct WirelessHeadphone
 bool WirelessHeadphone::playSound(RemoteDevice remoteDeviceA, double audioLevel)
 {    
     if (remoteDeviceA.receivedPowerInDb + audioLevel > 20)
-         return false;
+        return false;
     
     return true;
 }
