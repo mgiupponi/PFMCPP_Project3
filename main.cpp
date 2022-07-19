@@ -119,6 +119,7 @@ float StationersShop::makeAPhotocopy(Paper paperA, bool isBlackAndWhite, bool on
     {
          price = price * 2;
     }
+    std::cout << "Making a photocopy!" << std::endl;
     return price;
 }
 
@@ -175,6 +176,7 @@ Wallet::Wallet()
 std::string Wallet::identifyTheOwner(CreditCard creditCardA)
 {    
     return std::to_string(creditCardA.cardNumber);
+    std::cout << "Owner being identified!" << std::endl;
 }
 
 bool Wallet::payLunch(CreditCard creditCardB, float tipPercentage)
@@ -230,6 +232,7 @@ Laptop::Laptop()
 
 std::string Laptop::readDocument(File inputFile)
 {    
+    std::cout << "Starting to read document!" << std::endl;
     return inputFile.fullPath;
 }
 
@@ -285,6 +288,7 @@ SwissArmyKnife::SwissArmyKnife()
 float SwissArmyKnife::cutFood(Tool toolA, float pressureToApply)
 {    
     float output = toolA.thicknessInMm - pressureToApply;
+    std::cout << "I will cut food!" << std::endl;
     return output;
 }
 bool SwissArmyKnife::openABottle(double speedInDegreesPerSecond, bool isACorkLid)
@@ -340,6 +344,7 @@ Speakers::Speakers()
 float Speakers::playAudibleSound(SoundFile soundFileA, double level)
 {    
     float output = soundFileA.soundLengthInMs * static_cast<float>(level);
+    std::cout << "Audio is going to be played!" << std::endl;
     return output;
 }
 
@@ -399,6 +404,7 @@ double Cables::holdDeviceOverUsersHead()
 float Cables::transportAudioSignals(Wire wireA, std::string audioFile)
 {    
     float output = wireA.resistancePerMeterInOhms + audioFile.length();
+    std::cout << "Audio signal being transported!" << std::endl;
     return output;
 }
 float Cables::transportControlSignals(Wire wireB, int binaryCode)
@@ -443,6 +449,7 @@ BluetoothInterface::BluetoothInterface()
 float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, float rxAmplification)
 {    
     float output = wirelessChannelC.centerFrequencyInGhz + rxAmplification;
+    std::cout << "Receving audio trough the bluetooth interface!" << std::endl;
     return output;
 }
 float BluetoothInterface::sendPlaySignal(WirelessChannel wirelessChannelA)
@@ -502,6 +509,7 @@ float LogicCircuit::generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, 
 void LogicCircuit::generateVoiceInformation(BusChannel busChannel, std::string stringToSend)
 {    
     busChannel.busSource.length();
+    std::cout << "Generating voice information!" << std::endl;
     stringToSend.length();
 }
 double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
@@ -548,7 +556,7 @@ bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSeco
 {    
     if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20)
         return false;
-    
+    std::cout << "Powering the device on" << std::endl;
     return true;
 }
 void Buttons::changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks)
@@ -599,7 +607,7 @@ bool WirelessHeadphone::playSound(RemoteDevice remoteDeviceA, double audioLevel)
 {    
     if (remoteDeviceA.receivedPowerInDb + audioLevel > 20)
         return false;
-    
+    std::cout << "Playing sound!" << std::endl;
     return true;
 }
 double WirelessHeadphone::recordSound(RemoteDevice remoteDeviceB, int amountOfClicks)
