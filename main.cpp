@@ -641,7 +641,9 @@ int main()
     Example::main();
     
     StationersShop stationersShop1;
+    StationersShop::Paper paper1;
     Wallet wallet1;
+    Wallet::CreditCard creditCard1;
     Laptop laptop1;
     SwissArmyKnife swissArmyKnife1;
     Speakers speakers1;
