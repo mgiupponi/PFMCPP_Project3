@@ -640,6 +640,16 @@ int main()
 {
     Example::main();
     
+    StationersShop stationersShop1;
+    Wallet wallet1;
+    Laptop laptop1;
+    SwissArmyKnife swissArmyKnife1;
+    Speakers speakers1;
+    Cables cables1;
+    BluetoothInterface BluetoothInterface1;
+    LogicCircuit logicCircuit1;
+    Buttons buttons1;
+    WirelessHeadphone wirelessHeadphone1;
     
     std::cout << "good to go!" << std::endl;
 }
