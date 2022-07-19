@@ -75,6 +75,7 @@ int main()
 
 struct StationersShop      
 {
+    StationersShop(); 
     int numPaperSizesForsale = 15;    
     int numWrappingPaperDesignsForsale = 20;        
     float monthElectricityBill = 150.2f;            
@@ -101,6 +102,11 @@ struct StationersShop
 
     Paper paperToBeUsed;  
 };
+
+StationersShop::StationersShop()
+{
+    std::cout << "StationersShop being constructed!" << std::endl;
+}
 
 float StationersShop::makeAPhotocopy(Paper paperA, bool isBlackAndWhite, bool onesided)
 {    
@@ -133,6 +139,7 @@ void StationersShop::wrapAGift(std::string wrappingPaperModel)
 
 struct Wallet     
 {
+    Wallet();
     int numSlots = 7;  
     int numCreditCards = 4;     
     float amountOfCashCarried = 250.0f;            
@@ -160,6 +167,11 @@ struct Wallet
     CreditCard creditCardSelected;
 };
 
+Wallet::Wallet()
+{
+    std::cout << "Wallet being constructed!" << std::endl;
+}
+
 std::string Wallet::identifyTheOwner(CreditCard creditCardA)
 {    
     return std::to_string(creditCardA.cardNumber);
@@ -185,6 +197,7 @@ bool Wallet::enterABuilding(float walletOrientationToUseInDegrees)
 
 struct Laptop   
 {
+    Laptop();
     std::string color = "Black";
     float weightIngrams = 150.5f;     
     std::string processorModel = "Corei3";              
@@ -210,6 +223,11 @@ struct Laptop
     File fileBeingProcessed;
 };
 
+Laptop::Laptop()
+{
+    std::cout << "Laptop being constructed!" << std::endl;
+}
+
 std::string Laptop::readDocument(File inputFile)
 {    
     return inputFile.fullPath;
@@ -233,6 +251,7 @@ void Laptop::TakeAPicture(File outputFile, float lidOrientationInDegrees)
 
 struct SwissArmyKnife      
 {
+    SwissArmyKnife();
     std::string color = "Red";
     int amountOfTools = 8;     
     float weightInGrams= 40.0f;              
@@ -258,6 +277,11 @@ struct SwissArmyKnife
     Tool toolBeingUsed;
 };
 
+SwissArmyKnife::SwissArmyKnife()
+{
+    std::cout << "SwissArmyKnife being constructed!" << std::endl;
+}
+
 float SwissArmyKnife::cutFood(Tool toolA, float pressureToApply)
 {    
     float output = toolA.thicknessInMm - pressureToApply;
@@ -282,6 +306,7 @@ void SwissArmyKnife::unscrew(Tool toolB)
 
 struct Speakers    
 {
+    Speakers();
     int amountOfDevices = 4; 
     int sizeInCm = 1;     
     double maxPowerWatts= 5.0;              
@@ -307,6 +332,11 @@ struct Speakers
     SoundFile soundFileBeingPlayed;
 };
 
+Speakers::Speakers()
+{
+    std::cout << "Speakers being constructed!" << std::endl;
+}
+
 float Speakers::playAudibleSound(SoundFile soundFileA, double level)
 {    
     float output = soundFileA.soundLengthInMs * static_cast<float>(level);
@@ -330,6 +360,7 @@ float Speakers::playUltraSound(SoundFile soundFileB, float level)
 
 struct Cables      
 {
+    Cables();
     int lengthInCm = 8;
     std::string color = "Red";     
     int amountOfinternalWires= 5;              
@@ -355,6 +386,11 @@ struct Cables
     Wire wireSelectedForSignal;
 };
 
+Cables::Cables()
+{
+    std::cout << "Cables being constructed!" << std::endl;
+}
+
 double Cables::holdDeviceOverUsersHead()
 {    
     double output = 10.0;
@@ -373,6 +409,7 @@ float Cables::transportControlSignals(Wire wireB, int binaryCode)
 
 struct BluetoothInterface      
 {
+    BluetoothInterface();
     double bluetoothVersion = 2.0;
     double transmissionPowerInMw = 300;     
     double receiverSensitivityInDb= 5.0;              
@@ -398,6 +435,11 @@ struct BluetoothInterface
     WirelessChannel wirelessChannelSelected;
 };
 
+BluetoothInterface::BluetoothInterface()
+{
+    std::cout << "BluetoothInterface being constructed!" << std::endl;
+}
+
 float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, float rxAmplification)
 {    
     float output = wirelessChannelC.centerFrequencyInGhz + rxAmplification;
@@ -420,6 +462,7 @@ float BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, boo
 
 struct LogicCircuit    
 {
+    LogicCircuit();
     double bluetoothVersion = 2.0;
     double transmissionPowerInMw = 300;     
     double receiverSensitivityInDb= 5.0;              
@@ -446,6 +489,11 @@ struct LogicCircuit
     BusChannel busChannelBeingUsed;
 };
 
+LogicCircuit::LogicCircuit()
+{
+    std::cout << "LogicCircuit being constructed!" << std::endl;
+}
+
 float LogicCircuit::generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel)
 {    
     float output = txSpeakersChannel.maxVoltage * rxBluetoothBus.amountOfdigitalwires * amplificationLevel;
@@ -464,6 +512,7 @@ double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
 
 struct Buttons   
 {
+    Buttons();
     int Amount = 3;
     std::string color = "Black";     
     int IPProtection = 57;              
@@ -490,6 +539,11 @@ struct Buttons
     CircuitSwitch circuitSwitchBeingUsed;
 };
 
+Buttons::Buttons()
+{
+    std::cout << "Buttons being constructed!" << std::endl;
+}
+
 bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed)
 {    
     if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20)
@@ -509,6 +563,7 @@ std::string Buttons::answerACall(CircuitSwitch circuitSwitchB)
 
 struct WirelessHeadphone       
 {
+    WirelessHeadphone();
     Speakers speakers;
     Cables cables;     
     BluetoothInterface bluetoothInterface;              
@@ -534,6 +589,11 @@ struct WirelessHeadphone
     
     RemoteDevice remoteDeviceBeingUsed;
 };
+
+WirelessHeadphone::WirelessHeadphone()
+{
+    std::cout << "WirelessHeadphone being constructed!" << std::endl;
+}
 
 bool WirelessHeadphone::playSound(RemoteDevice remoteDeviceA, double audioLevel)
 {    
