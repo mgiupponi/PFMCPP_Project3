@@ -71,8 +71,6 @@ int main()
 //insert Example::main() into main() of user's repo.
 
 
-
-
 struct StationersShop      
 {
     StationersShop(); 
@@ -174,9 +172,9 @@ Wallet::Wallet()
 }
 
 std::string Wallet::identifyTheOwner(CreditCard creditCardA)
-{    
-    return std::to_string(creditCardA.cardNumber);
+{   
     std::cout << "Owner being identified!" << std::endl;
+    return std::to_string(creditCardA.cardNumber);
 }
 
 bool Wallet::payLunch(CreditCard creditCardB, float tipPercentage)
@@ -642,16 +640,58 @@ int main()
     
     StationersShop stationersShop1;
     StationersShop::Paper paper1;
+    std::cout << stationersShop1.makeAPhotocopy(paper1, true , false) << std::endl;
+    std::cout << stationersShop1.takePassportPhoto(paper1, "A4") << std::endl;
+    stationersShop1.wrapAGift("arrows");
     Wallet wallet1;
     Wallet::CreditCard creditCard1;
+    std::cout << wallet1.identifyTheOwner(creditCard1) << std::endl;
+    std::cout << wallet1.payLunch(creditCard1, 10.0f) << std::endl;
+    wallet1.enterABuilding(10.0f);
     Laptop laptop1;
+    Laptop::File file1;
+    laptop1.readDocument(file1);
+    laptop1.surfTheWeb("www.amazon.com", true);
+    laptop1.TakeAPicture(file1, 23.0f);
+    std::cout << laptop1.processorModel << std::endl;
+    std::cout << laptop1.brand << std::endl;
     SwissArmyKnife swissArmyKnife1;
+    SwissArmyKnife::Tool tool1;
+    swissArmyKnife1.cutFood(tool1, 0.234f);
+    swissArmyKnife1.openABottle(5.0, false);
+    swissArmyKnife1.unscrew(tool1);
+    std::cout << swissArmyKnife1.color << std::endl;
+    std::cout << swissArmyKnife1.manufactureYear << std::endl;
     Speakers speakers1;
+    Speakers::SoundFile soundFile1;
+    speakers1.playAudibleSound(soundFile1, 3.0);
+    speakers1.activateNoiseReduction(2);
+    speakers1.playUltraSound(soundFile1, 1.2f);
     Cables cables1;
+    Cables::Wire wire1;
+    cables1.holdDeviceOverUsersHead();
+    cables1.transportAudioSignals(wire1, "clap.wav");
+    cables1.transportControlSignals(wire1, 100101110);
     BluetoothInterface BluetoothInterface1;
+    BluetoothInterface::WirelessChannel wirelessChannel1;
+    BluetoothInterface1.receiveAudio(wirelessChannel1, 2.0f);
+    BluetoothInterface1.sendPlaySignal(wirelessChannel1);
+    BluetoothInterface1.sendBatteryLevel(wirelessChannel1, true);
     LogicCircuit logicCircuit1;
+    LogicCircuit::BusChannel busChannel1;
+    logicCircuit1.generatePowerAudioForSpeakers(busChannel1, busChannel1, 30.0f);
+    logicCircuit1.generateVoiceInformation(busChannel1, "Power On");
+    logicCircuit1.monitorBatteryCharge(busChannel1);
     Buttons buttons1;
+    Buttons::CircuitSwitch circuitSwitch1;
+    buttons1.powerOnTheDevice(circuitSwitch1, 2);
+    buttons1.changeSong(circuitSwitch1, 2);
+    buttons1.answerACall(circuitSwitch1);
     WirelessHeadphone wirelessHeadphone1;
+    WirelessHeadphone::RemoteDevice remoteDevice1;
+    wirelessHeadphone1.playSound(remoteDevice1, 1.2);
+    wirelessHeadphone1.recordSound(remoteDevice1, 1);
+    wirelessHeadphone1.answerACall(remoteDevice1);
     
     std::cout << "good to go!" << std::endl;
 }
