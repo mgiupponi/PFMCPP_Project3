@@ -115,7 +115,7 @@ struct Wallet
     int numSlots;  
     int numCreditCards = 4;     
     float amountOfCashCarried = 250.0f;            
-    float weightIngrams = 150.5f;               
+    float weightInGrams = 150.5f;               
     std::string color = "Brown";
 
     Wallet() : numSlots( 7 ), color( "Brown" ) { }
@@ -151,6 +151,7 @@ Wallet::Wallet()
 std::string Wallet::identifyTheOwner(CreditCard creditCardA)
 {   
     std::cout << "Owner being identified!" << std::endl;
+    std::cout << "Wallet::identifyTheOwner(...) numSlots:" << numSlots << " numCreditCards: " << numCreditCards << std::endl;
     return std::to_string(creditCardA.cardNumber);
 }
 
@@ -175,7 +176,7 @@ bool Wallet::enterABuilding(float walletOrientationToUseInDegrees)
 struct Laptop   
 {
     std::string color;
-    float weightIngrams = 150.5f;     
+    float weightInGrams = 150.5f;     
     std::string processorModel = "Corei3";              
     int screenSizeInInches;               
     std::string brand = "Lenovo";
@@ -211,6 +212,7 @@ Laptop::Laptop()
 std::string Laptop::readDocument(File inputFile)
 {    
     std::cout << "Starting to read document!" << std::endl;
+    std::cout << "Laptop::readDocument(...) color:" << color << " weightInGrams: " << weightInGrams << std::endl;
     return inputFile.fullPath;
 }
 
@@ -270,6 +272,7 @@ float SwissArmyKnife::cutFood(Tool toolA, float pressureToApply)
 {    
     float output = toolA.thicknessInMm - pressureToApply;
     std::cout << "I will cut food!" << std::endl;
+    std::cout << "SwissArmyKnife::cutFood(...) color:" << color << " amountOfTools: " << amountOfTools << std::endl;
     return output;
 }
 bool SwissArmyKnife::openABottle(double speedInDegreesPerSecond, bool isACorkLid)
@@ -329,6 +332,7 @@ float Speakers::playAudibleSound(SoundFile soundFileA, double level)
 {    
     float output = soundFileA.soundLengthInMs * static_cast<float>(level);
     std::cout << "Audio is going to be played!" << std::endl;
+    std::cout << "Speakers::playAudibleSound(...) maxPowerWatts:" << maxPowerWatts << " maxDecibPower: " << maxDecibPower << std::endl;
     return output;
 }
 
@@ -391,6 +395,7 @@ float Cables::transportAudioSignals(Wire wireA, std::string audioFile)
 {    
     float output = wireA.resistancePerMeterInOhms + audioFile.length();
     std::cout << "Audio signal being transported!" << std::endl;
+    std::cout << "Cables::transportAudioSignals(...) lengthInCm:" << lengthInCm << " amountOfinternalWires: " << amountOfinternalWires << std::endl;
     return output;
 }
 float Cables::transportControlSignals(Wire wireB, int binaryCode)
@@ -439,6 +444,7 @@ float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, float r
 {    
     float output = wirelessChannelC.centerFrequencyInGhz + rxAmplification;
     std::cout << "Receving audio trough the bluetooth interface!" << std::endl;
+    std::cout << "BluetoothInterface::receiveAudio(...) bluetoothVersion:" << bluetoothVersion << " transmissionPowerInMw: " << transmissionPowerInMw << std::endl;
     return output;
 }
 float BluetoothInterface::sendPlaySignal(WirelessChannel wirelessChannelA)
@@ -502,6 +508,7 @@ void LogicCircuit::generateVoiceInformation(BusChannel busChannel, std::string s
 {    
     busChannel.busSource.length();
     std::cout << "Generating voice information!" << std::endl;
+    std::cout << "LogicCircuit::generateVoiceInformation(...) maxInputVoltage:" << maxInputVoltage << " widthInCm: " << widthInCm << std::endl;
     stringToSend.length();
 }
 double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
@@ -512,12 +519,13 @@ double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
 
 struct Buttons   
 {
-    Buttons();
-    int Amount = 3;
-    std::string color = "Black";     
+    int Amount;
+    std::string color;     
     int IPProtection = 57;              
     std::string material = "silicone";               
-    double areaInMm = 20.0;               
+    double areaInMm = 20.0;
+
+    Buttons() : Amount( 3 ), color( "Black" ) { }
     
     struct CircuitSwitch      
     {
@@ -551,6 +559,7 @@ bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSeco
     if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20)
         return false;
     std::cout << "Powering the device on" << std::endl;
+    std::cout << "Buttons::powerOnTheDevice(...) color:" << color << " material: " << material << std::endl;
     return true;
 }
 void Buttons::changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks)
@@ -565,12 +574,13 @@ std::string Buttons::answerACall(CircuitSwitch circuitSwitchB)
 
 struct WirelessHeadphone       
 {
-    WirelessHeadphone();
     Speakers speakers;
     Cables cables;     
     BluetoothInterface bluetoothInterface;              
     LogicCircuit logicCircuit;               
-    Buttons buttons;       
+    Buttons buttons;
+
+    WirelessHeadphone() : speakers( Speakers() ), bluetoothInterface( BluetoothInterface() ) { }
 
     struct RemoteDevice      
     {
@@ -604,6 +614,7 @@ bool WirelessHeadphone::playSound(RemoteDevice remoteDeviceA, double audioLevel)
     if (remoteDeviceA.receivedPowerInDb + audioLevel > 20)
         return false;
     std::cout << "Playing sound!" << std::endl;
+    std::cout << "WirelessHeadphone::playSound(...) speakers.amountOfDevices:" << speakers.amountOfDevices << " cables.color: " << cables.color << std::endl;
     return true;
 }
 double WirelessHeadphone::recordSound(RemoteDevice remoteDeviceB, int amountOfClicks)
