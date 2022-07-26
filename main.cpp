@@ -69,13 +69,8 @@ int main()
 
 //call Example::main() in main()
 
-
-
-
-
 struct StationersShop      
 {
-    //StationersShop(); 
     int numPaperSizesForsale = 15;    
     int numWrappingPaperDesignsForsale = 20;        
     float monthElectricityBill;            
@@ -100,7 +95,9 @@ struct StationersShop
 
     float makeAPhotocopy(Paper paperA, bool isBlackAndWhite = true , bool onesided = false);
     float takePassportPhoto(Paper paperB, std::string sizeStandard);
-    void wrapAGift(std::string wrappingPaperModel); 
+    void wrapAGift(std::string wrappingPaperModel);
+    float chargeCustomer(std::string customerName, float maxCredit, int numItems);
+    float sendItems(std::string customerAddress, float weightPerItem, int numItems);
 
     Paper paperToBeUsed;  
 };
@@ -142,6 +139,33 @@ void StationersShop::wrapAGift(std::string wrappingPaperModel)
 {    
     std::cout << wrappingPaperModel.size();
 }
+
+float chargeCustomer(std::string customerName, float maxCredit, int numItems)
+{    
+    float totalPrice = 0.0f;
+    StationersShop::Paper paper = StationersShop::Paper();
+    while ( totalPrice < maxCredit ) {
+        paper.priceInUsd = ( maxCredit / numItems ) * 0.95f - paper.priceInUsd * 0.2;
+        totalPrice += paper.priceInUsd * 1.2f;
+        std::cout << "chargeCustomer customerName:" << customerName << " totalPrice: " << totalPrice << std::endl;
+    }
+    return totalPrice;
+}
+
+/*
+float sendItems(std::string customerAddress, float weightPerItem, int numItems)
+{    
+    int i = 0;
+    float totalPrice;
+    StationersShop::Paper paper = StationersShop::Paper();
+    while (i < numItems) {
+        totalWeight += weightPerItem;
+        paper.priceInUsd = totalPrice/((i+1)*0.95);
+        i++;
+    }
+    return totalPrice;
+}
+*/
 
 struct Wallet     
 {
@@ -685,6 +709,7 @@ int main()
     std::cout << stationersShop1.makeAPhotocopy(paper1, true , false) << std::endl;
     std::cout << stationersShop1.takePassportPhoto(paper1, "A4") << std::endl;
     stationersShop1.wrapAGift("arrows");
+    stationersShop1.chargeCustomer("Pepe", 120.0f, 5);
     Wallet wallet1;
     Wallet::CreditCard creditCard1;
     std::cout << wallet1.identifyTheOwner(creditCard1) << std::endl;
