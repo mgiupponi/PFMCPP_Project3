@@ -222,7 +222,7 @@ bool Wallet::enterABuilding(float walletOrientationToUseInDegrees)
 float Wallet::creditAuthorization(CreditCard creditCardB, float pricePerItem, int numItems)
 {    
     float amountReserved = 0.0f;
-    for (int i = 0; i < numItems; i++) {
+    for (int i = 0; i < numItems; ++i) {
         creditCardB.availableCreditInUsd = ( creditCardB.availableCreditInUsd ) * 0.7f + pricePerItem;
         amountReserved += creditCardB.availableCreditInUsd * 1.01f;
         std::cout << "creditAuthorization cardNumber:" << creditCardB.cardNumber << " availableCreditInUsd: " << creditCardB.availableCreditInUsd << std::endl;
@@ -233,8 +233,8 @@ float Wallet::creditAuthorization(CreditCard creditCardB, float pricePerItem, in
 float Wallet::creditCardBalance(CreditCard creditCardB, int maxEntries)
 {    
     float finalBalance = 0.0f;
-    for (int i = 0; i < maxEntries; i++) {
-        creditCardB.availableCreditInUsd = ( creditCardB.availableCreditInUsd ) * 0.9f;
+    for (int i = 0; i < maxEntries; ++i) {
+        creditCardB.availableCreditInUsd *= 0.9f;
         finalBalance += creditCardB.availableCreditInUsd * 1.05f;
         std::cout << "creditCardBalance cardNumber:" << creditCardB.cardNumber << " finalBalance: " << finalBalance << std::endl;
     }
@@ -299,8 +299,8 @@ float Laptop::defragmentFile(File inputFile, float precision)
 {    
     float achievedPrecision = 0.0f;
     while ( achievedPrecision < precision ) {
-        inputFile.sizeInBytes = inputFile.sizeInBytes * 0.8f;
-        achievedPrecision += achievedPrecision + 2.0f ;
+        inputFile.sizeInBytes *= 0.8f;
+        achievedPrecision += 2.0f ;
         std::cout << "defragmentFile fullPath:" << inputFile.fullPath << " achievedPrecision: " << achievedPrecision << std::endl;
     }
     return achievedPrecision;
@@ -310,7 +310,7 @@ float Laptop::zoomFile(File inputFile, float zoomPercentage)
 {    
     float currentZoom = 100.0f;
     while ( currentZoom < zoomPercentage ) {
-        inputFile.sizeInBytes = ( inputFile.sizeInBytes ) * 1.1f;
+        inputFile.sizeInBytes *= 1.1f;
         currentZoom += inputFile.sizeInBytes * 0.02f;
         std::cout << "zoomFile fullPath:" << inputFile.fullPath << " sizeInBytes: " << inputFile.sizeInBytes << std::endl;
     }
@@ -373,10 +373,26 @@ void SwissArmyKnife::unscrew(Tool toolB)
 }
 
 float SwissArmyKnife::megaPressure(Tool toolA, float pressure)
-
+{    
+    float currentPessure = 0.0f;
+    while ( currentPessure < pressure ) {
+        toolA.thicknessInMm *= 1.2f;
+        currentPessure += 2.0f ;
+        std::cout << "megaPressure toolName:" << toolA.toolName << " thicknessInMm: " << toolA.thicknessInMm << std::endl;
+    }
+    return currentPessure;
+}
 
 float SwissArmyKnife::reflectSun(Tool toolA, float lightIntensity)
-
+{    
+    float lengthIncrease = 0.0f;
+    while ( lengthIncrease < lightIntensity ) {
+        toolA.lentghInCm *= 1.2f;
+        lengthIncrease += 2.0f ;
+        std::cout << "reflectSun toolName:" << toolA.toolName << " lentghInCm: " << toolA.lentghInCm << std::endl;
+    }
+    return lengthIncrease;
+}
 
 struct Speakers    
 {
@@ -403,16 +419,11 @@ struct Speakers
     float playAudibleSound(SoundFile soundFileA, double level = 6.0);
     bool activateNoiseReduction(int duration);
     float playUltraSound(SoundFile soundFileB, float level);
+    float compensateNoise(SoundFile soundFileA, float intensity);
+    float forceZero(SoundFile soundFileA, float maxWatts);
     
     SoundFile soundFileBeingPlayed;
 };
-
-/*
-Speakers::Speakers()
-{
-    std::cout << "Speakers being constructed!" << std::endl;
-}
-*/
 
 float Speakers::playAudibleSound(SoundFile soundFileA, double level)
 {    
@@ -435,6 +446,28 @@ float Speakers::playUltraSound(SoundFile soundFileB, float level)
 {  
     float output = soundFileB.soundLengthInMs + level;
     return output;
+}
+
+float Speakers::compensateNoise(SoundFile soundFileA, float intensity)
+{    
+    float currentIntensity = 0.0f;
+    while ( currentIntensity < intensity ) {
+        soundFileA.soundLengthInMs *= 1.8f;
+        currentIntensity += 2.5f ;
+        std::cout << "compensateNoise filePath:" << soundFileA.filePath << " soundLengthInMs: " << soundFileA.soundLengthInMs << std::endl;
+    }
+    return currentIntensity;
+}
+
+float Speakers::forceZero(SoundFile soundFileA, float maxWatts)
+{    
+    float currentWatts = 0.0f;
+    while ( currentWatts < maxWatts ) {
+        soundFileA.soundLengthInMs *= 1.4f;
+        currentWatts += 4.0f ;
+        std::cout << "forceZero filePath:" << soundFileA.filePath << " soundLengthInMs: " << soundFileA.soundLengthInMs << std::endl;
+    }
+    return currentWatts;
 }
 
 struct Cables      
@@ -461,16 +494,11 @@ struct Cables
     double holdDeviceOverUsersHead();
     float transportAudioSignals(Wire wireA, std::string audioFile = "boom.wav");
     float transportControlSignals(Wire wireB, int binaryCode = 1100101010);
-    
+    float sendSquareWave(Wire wireA, int maxVoltage);
+    float resetToGround(Wire wireA, int timeMillis);
+
     Wire wireSelectedForSignal;
 };
-
-/*
-Cables::Cables()
-{
-    std::cout << "Cables being constructed!" << std::endl;
-}
-*/
 
 double Cables::holdDeviceOverUsersHead()
 {    
@@ -490,6 +518,26 @@ float Cables::transportControlSignals(Wire wireB, int binaryCode)
     return output;
 }
 
+float Cables::sendSquareWave(Wire wireA, int maxVoltage)
+{    
+    float currentVoltage = 0.0f;
+    for (int i = 0; i < maxVoltage; ++i) {
+        wireA.resistancePerMeterInOhms *= 0.9f;
+        currentVoltage += 1.05f;
+        std::cout << "sendSquareWave material:" << wireA.material << " resistancePerMeterInOhms: " << wireA.resistancePerMeterInOhms << std::endl;
+    }
+    return currentVoltage;
+}
+float Cables::resetToGround(Wire wireA, int timeMillis)
+{    
+    float currentPower = 0.8f;
+    for (int i = 0; i < timeMillis; ++i) {
+        wireA.thicknessInUm *= 0.7f;
+        currentPower *= 1.2f;
+        std::cout << "resetToGround material:" << wireA.material << " currentPower: " << currentPower << std::endl;
+    }
+    return currentPower;
+}
 struct BluetoothInterface      
 {
     double bluetoothVersion;
@@ -504,7 +552,7 @@ struct BluetoothInterface
     {
         float centerFrequencyInGhz = 2.7f;
         float frequencyWidthInGhz = 0.01f;
-        double channelCapacityInMbps = 20;
+        float channelCapacityInMbps = 20.0f;
         std::string channelName = "23";
 
         bool testIfChannelAvailable();
@@ -515,16 +563,10 @@ struct BluetoothInterface
     float receiveAudio(WirelessChannel wirelessChannelC, float rxAmplification);
     float sendPlaySignal(WirelessChannel wirelessChannelA);
     float sendBatteryLevel(WirelessChannel wirelessChannelB, bool reCheckBattery = true );
-    
+    float restartConnection(WirelessChannel wirelessChannelA, int retries);
+
     WirelessChannel wirelessChannelSelected;
 };
-
-/*
-BluetoothInterface::BluetoothInterface()
-{
-    std::cout << "BluetoothInterface being constructed!" << std::endl;
-}
-*/
 
 float BluetoothInterface::receiveAudio(WirelessChannel wirelessChannelC, float rxAmplification)
 {    
@@ -546,6 +588,17 @@ float BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, boo
         return output = output * 2;
     }
     return output;
+}
+
+float BluetoothInterface::restartConnection(WirelessChannel wirelessChannelA, int retries)
+{    
+    float receivedPower = 0.3f;
+    for (int i = 0; i < retries; ++i) {
+        wirelessChannelA.channelCapacityInMbps *= 0.9f;
+        receivedPower *= 1.32f;
+        std::cout << "restartConnection channelName:" << wirelessChannelA.channelName << " channelCapacityInMbps: " << wirelessChannelA.channelCapacityInMbps << std::endl;
+    }
+    return receivedPower;
 }
 
 struct LogicCircuit    
@@ -574,16 +627,10 @@ struct LogicCircuit
     float generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel = 10.0f);
     void generateVoiceInformation(BusChannel busChannel, std::string stringToSend = "Power On");
     double monitorBatteryCharge(BusChannel batteryBusToRead);
-    
+    float resetChips(BusChannel busChannel, int speed);
+
     BusChannel busChannelBeingUsed;
 };
-
-/*
-LogicCircuit::LogicCircuit()
-{
-    std::cout << "LogicCircuit being constructed!" << std::endl;
-}
-*/
 
 float LogicCircuit::generatePowerAudioForSpeakers(BusChannel txSpeakersChannel, BusChannel rxBluetoothBus, float amplificationLevel)
 {    
@@ -603,6 +650,17 @@ double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
     return output;
 }
 
+float LogicCircuit::resetChips(BusChannel busChannel, int speed)
+{    
+    float currentSpeed = 0.3f;
+    for (int i = 0; i < speed; ++i) {
+        busChannel.maxVoltage *= 0.9f;
+        currentSpeed *= 1.32f;
+        std::cout << "resetChips busDestination:" << busChannel.busDestination << " maxVoltage: " << busChannel.maxVoltage << std::endl;
+    }
+    return currentSpeed;
+}
+
 struct Buttons   
 {
     int Amount;
@@ -617,7 +675,7 @@ struct Buttons
     {
         bool normallyOpen = true;
         int amountOfPins = 2;
-        double lengthInMm = 7;
+        float lengthInMm = 7.0f;
         double widthInMm = 7;
         std::string placementOntheCircuit = "powerModule";
 
@@ -629,16 +687,10 @@ struct Buttons
     bool powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed = 2);
     void changeSong(CircuitSwitch circuitSwitchB, int amountOfClicks = 1 );
     std::string answerACall(CircuitSwitch circuitSwitchB);
-    
+    float factoryReset(CircuitSwitch circuitSwitchA, int flashErases);
+
     CircuitSwitch circuitSwitchBeingUsed;
 };
-
-/*
-Buttons::Buttons()
-{
-    std::cout << "Buttons being constructed!" << std::endl;
-}
-*/
 
 bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed)
 {    
@@ -657,6 +709,18 @@ std::string Buttons::answerACall(CircuitSwitch circuitSwitchB)
 {
     return circuitSwitchB.placementOntheCircuit;
 }
+
+float Buttons::factoryReset(CircuitSwitch circuitSwitchA, int flashErases)
+{    
+    float remainingCharge = 0.3f;
+    for (int i = 0; i < flashErases; ++i) {
+        circuitSwitchA.lengthInMm *= 0.9f;
+        remainingCharge /= 1.32f;
+        std::cout << "factoryReset lengthInMm:" << circuitSwitchA.lengthInMm << " remainingCharge: " << remainingCharge << std::endl;
+    }
+    return remainingCharge;
+}
+
 
 struct WirelessHeadphone       
 {
@@ -684,16 +748,10 @@ struct WirelessHeadphone
     bool playSound(RemoteDevice remoteDeviceA, double audioLevel = 2);
     double recordSound(RemoteDevice remoteDeviceB, int amountOfClicks = 1 );
     std::string answerACall(RemoteDevice remoteDeviceB);
-    
+    float muteMic(RemoteDevice remoteDeviceA, int retries);
+
     RemoteDevice remoteDeviceBeingUsed;
 };
-
-/*
-WirelessHeadphone::WirelessHeadphone()
-{
-    std::cout << "WirelessHeadphone being constructed!" << std::endl;
-}
-*/
 
 bool WirelessHeadphone::playSound(RemoteDevice remoteDeviceA, double audioLevel)
 {    
@@ -713,6 +771,16 @@ std::string WirelessHeadphone::answerACall(RemoteDevice remoteDeviceB)
     return remoteDeviceB.deviceName;
 }
 
+float WirelessHeadphone::muteMic(RemoteDevice remoteDeviceA, int retries)
+{    
+    float bitsReceived = 0.3f;
+    for (int i = 0; i < retries; ++i) {
+        remoteDeviceA.receivedPowerInDb *= 0.23;
+        bitsReceived *= 1.32f;
+        std::cout << "muteMic receivedPowerInDb:" << remoteDeviceA.receivedPowerInDb << " bitsReceived: " << bitsReceived << std::endl;
+    }
+    return bitsReceived;
+}
 
 /*
  MAKE SURE YOU ARE NOT ON THE MASTER BRANCH
@@ -766,41 +834,52 @@ int main()
     swissArmyKnife1.unscrew(tool1);
     std::cout << swissArmyKnife1.color << std::endl;
     std::cout << swissArmyKnife1.manufactureYear << std::endl;
+    swissArmyKnife1.megaPressure(tool1, 15.0f);
+    swissArmyKnife1.reflectSun(tool1, 8.2f);
     
     Speakers speakers1;
     Speakers::SoundFile soundFile1;
     speakers1.playAudibleSound(soundFile1, 3.0);
     speakers1.activateNoiseReduction(2);
     speakers1.playUltraSound(soundFile1, 1.2f);
+    speakers1.compensateNoise(soundFile1, 12.0f);
+    speakers1.forceZero(soundFile1, 5.6f);
+    
     Cables cables1;
     Cables::Wire wire1;
     cables1.holdDeviceOverUsersHead();
     cables1.transportAudioSignals(wire1, "clap.wav");
     cables1.transportControlSignals(wire1, 100101110);
+    cables1.sendSquareWave(wire1, 5);
+    cables1.resetToGround(wire1, 7);
     
     BluetoothInterface BluetoothInterface1;
     BluetoothInterface::WirelessChannel wirelessChannel1;
     BluetoothInterface1.receiveAudio(wirelessChannel1, 2.0f);
     BluetoothInterface1.sendPlaySignal(wirelessChannel1);
     BluetoothInterface1.sendBatteryLevel(wirelessChannel1, true);
+    BluetoothInterface1.restartConnection(wirelessChannel1, 5);
     
     LogicCircuit logicCircuit1;
     LogicCircuit::BusChannel busChannel1;
     logicCircuit1.generatePowerAudioForSpeakers(busChannel1, busChannel1, 30.0f);
     logicCircuit1.generateVoiceInformation(busChannel1, "Power On");
     logicCircuit1.monitorBatteryCharge(busChannel1);
+    logicCircuit1.resetChips(busChannel1, 7);
     
     Buttons buttons1;
     Buttons::CircuitSwitch circuitSwitch1;
     buttons1.powerOnTheDevice(circuitSwitch1, 2);
     buttons1.changeSong(circuitSwitch1, 2);
     buttons1.answerACall(circuitSwitch1);
+    buttons1.factoryReset(circuitSwitch1, 4);
     
     WirelessHeadphone wirelessHeadphone1;
     WirelessHeadphone::RemoteDevice remoteDevice1;
     wirelessHeadphone1.playSound(remoteDevice1, 1.2);
     wirelessHeadphone1.recordSound(remoteDevice1, 1);
     wirelessHeadphone1.answerACall(remoteDevice1);
+    wirelessHeadphone1.muteMic(remoteDevice1, 6);
     
     std::cout << "good to go!" << std::endl;
 }
