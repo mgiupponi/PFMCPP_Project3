@@ -102,13 +102,6 @@ struct StationersShop
     Paper paperToBeUsed;  
 };
 
-/*
-StationersShop::StationersShop()
-{
-    std::cout << "StationersShop being constructed!" << std::endl;
-}
-*/
-
 float StationersShop::makeAPhotocopy(Paper paperA, bool isBlackAndWhite, bool onesided)
 {    
     float price = paperA.priceInUsd;
@@ -140,32 +133,33 @@ void StationersShop::wrapAGift(std::string wrappingPaperModel)
     std::cout << wrappingPaperModel.size();
 }
 
-float chargeCustomer(std::string customerName, float maxCredit, int numItems)
+float StationersShop::chargeCustomer(std::string customerName, float maxCredit, int numItems)
 {    
     float totalPrice = 0.0f;
     StationersShop::Paper paper = StationersShop::Paper();
     while ( totalPrice < maxCredit ) {
-        paper.priceInUsd = ( maxCredit / numItems ) * 0.95f - paper.priceInUsd * 0.2;
+        paper.priceInUsd = ( maxCredit / numItems ) * 0.95f - paper.priceInUsd * 0.2f;
         totalPrice += paper.priceInUsd * 1.2f;
         std::cout << "chargeCustomer customerName:" << customerName << " totalPrice: " << totalPrice << std::endl;
     }
     return totalPrice;
 }
 
-/*
-float sendItems(std::string customerAddress, float weightPerItem, int numItems)
-{    
-    int i = 0;
-    float totalPrice;
+
+float StationersShop::sendItems(std::string customerAddress, float weightPerItem, int numItems)
+{   
+    float shippingCost = 0.0f;
     StationersShop::Paper paper = StationersShop::Paper();
-    while (i < numItems) {
-        totalWeight += weightPerItem;
-        paper.priceInUsd = totalPrice/((i+1)*0.95);
-        i++;
+    int i=0;
+    while ( i < numItems ) {
+        paper.thicnessInuM = ( paper.thicnessInuM ) * 0.95f + paper.thicnessInuM * 0.2f;
+        shippingCost += paper.thicnessInuM * 0.8f + weightPerItem;
+        std::cout << "sendItems customerAddress:" << customerAddress << " shippingCost: " << shippingCost << std::endl;
+        ++i;
     }
-    return totalPrice;
+    return shippingCost;
 }
-*/
+
 
 struct Wallet     
 {
@@ -194,16 +188,11 @@ struct Wallet
     std::string identifyTheOwner(CreditCard creditCardA);
     bool payLunch(CreditCard creditCardB, float tipPercentage = 10.0);
     bool enterABuilding(float walletOrientationToUseInDegrees = 0.0f);
+    float creditAuthorization(CreditCard creditCardB, float pricePerItem, int numItems);
+    float creditCardBalance(CreditCard creditCardB, int maxEntries);
     
     CreditCard creditCardSelected;
 };
-
-/*
-Wallet::Wallet()
-{
-    std::cout << "Wallet being constructed!" << std::endl;
-}
-*/
 
 std::string Wallet::identifyTheOwner(CreditCard creditCardA)
 {   
@@ -228,6 +217,28 @@ bool Wallet::enterABuilding(float walletOrientationToUseInDegrees)
          return true;
     }
     return false;
+}
+
+float Wallet::creditAuthorization(CreditCard creditCardB, float pricePerItem, int numItems)
+{    
+    float amountReserved = 0.0f;
+    for (int i = 0; i < numItems; i++) {
+        creditCardB.availableCreditInUsd = ( creditCardB.availableCreditInUsd ) * 0.7f + pricePerItem;
+        amountReserved += creditCardB.availableCreditInUsd * 1.01f;
+        std::cout << "creditAuthorization cardNumber:" << creditCardB.cardNumber << " availableCreditInUsd: " << creditCardB.availableCreditInUsd << std::endl;
+    }
+    return amountReserved;
+}
+
+float Wallet::creditCardBalance(CreditCard creditCardB, int maxEntries)
+{    
+    float finalBalance = 0.0f;
+    for (int i = 0; i < maxEntries; i++) {
+        creditCardB.availableCreditInUsd = ( creditCardB.availableCreditInUsd ) * 0.9f;
+        finalBalance += creditCardB.availableCreditInUsd * 1.05f;
+        std::cout << "creditCardBalance cardNumber:" << creditCardB.cardNumber << " finalBalance: " << finalBalance << std::endl;
+    }
+    return finalBalance;
 }
 
 struct Laptop   
@@ -255,16 +266,11 @@ struct Laptop
     std::string readDocument(File inputFile);
     float surfTheWeb(std::string url = "www.google.com", bool incognitoMode = false);
     void TakeAPicture(File outputFile, float lidOrientationInDegrees = 55.0f);
+    float defragmentFile(File inputFile, float precision);
+    float zoomFile(File inputFile, float zoomPercentage);
 
     File fileBeingProcessed;
 };
-
-/*
-Laptop::Laptop()
-{
-    std::cout << "Laptop being constructed!" << std::endl;
-}
-*/
 
 std::string Laptop::readDocument(File inputFile)
 {    
@@ -287,6 +293,28 @@ void Laptop::TakeAPicture(File outputFile, float lidOrientationInDegrees)
 {    
     if (lidOrientationInDegrees > 5)
         outputFile.fullPath.size();
+}
+
+float Laptop::defragmentFile(File inputFile, float precision)
+{    
+    float achievedPrecision = 0.0f;
+    while ( achievedPrecision < precision ) {
+        inputFile.sizeInBytes = inputFile.sizeInBytes * 0.8f;
+        achievedPrecision += achievedPrecision + 2.0f ;
+        std::cout << "defragmentFile fullPath:" << inputFile.fullPath << " achievedPrecision: " << achievedPrecision << std::endl;
+    }
+    return achievedPrecision;
+}
+
+float Laptop::zoomFile(File inputFile, float zoomPercentage)
+{    
+    float currentZoom = 100.0f;
+    while ( currentZoom < zoomPercentage ) {
+        inputFile.sizeInBytes = ( inputFile.sizeInBytes ) * 1.1f;
+        currentZoom += inputFile.sizeInBytes * 0.02f;
+        std::cout << "zoomFile fullPath:" << inputFile.fullPath << " sizeInBytes: " << inputFile.sizeInBytes << std::endl;
+    }
+    return currentZoom;
 }
 
 struct SwissArmyKnife      
@@ -314,16 +342,11 @@ struct SwissArmyKnife
     float cutFood(Tool toolA, float pressureToApply);
     bool openABottle(double speedInDegreesPerSecond, bool isACorkLid = false);
     void unscrew(Tool toolB);
+    float megaPressure(Tool toolA, float pressure);
+    float reflectSun(Tool toolA, float lightIntensity);
 
     Tool toolBeingUsed;
 };
-
-/*
-SwissArmyKnife::SwissArmyKnife()
-{
-    std::cout << "SwissArmyKnife being constructed!" << std::endl;
-}
-*/
 
 float SwissArmyKnife::cutFood(Tool toolA, float pressureToApply)
 {    
@@ -348,6 +371,12 @@ void SwissArmyKnife::unscrew(Tool toolB)
 {    
     std::to_string(toolB.lentghInCm);
 }
+
+float SwissArmyKnife::megaPressure(Tool toolA, float pressure)
+
+
+float SwissArmyKnife::reflectSun(Tool toolA, float lightIntensity)
+
 
 struct Speakers    
 {
@@ -710,11 +739,16 @@ int main()
     std::cout << stationersShop1.takePassportPhoto(paper1, "A4") << std::endl;
     stationersShop1.wrapAGift("arrows");
     stationersShop1.chargeCustomer("Pepe", 120.0f, 5);
+    stationersShop1.sendItems("282 zabala street", 12.0f, 3);
+    
     Wallet wallet1;
     Wallet::CreditCard creditCard1;
     std::cout << wallet1.identifyTheOwner(creditCard1) << std::endl;
     std::cout << wallet1.payLunch(creditCard1, 10.0f) << std::endl;
     wallet1.enterABuilding(10.0f);
+    wallet1.creditAuthorization(creditCard1, 15.2f, 9);
+    wallet1.creditCardBalance(creditCard1, 8);
+    
     Laptop laptop1;
     Laptop::File file1;
     laptop1.readDocument(file1);
@@ -722,6 +756,9 @@ int main()
     laptop1.TakeAPicture(file1, 23.0f);
     std::cout << laptop1.processorModel << std::endl;
     std::cout << laptop1.brand << std::endl;
+    laptop1.defragmentFile(file1, 8);
+    laptop1.zoomFile(file1, 200.0f);
+    
     SwissArmyKnife swissArmyKnife1;
     SwissArmyKnife::Tool tool1;
     swissArmyKnife1.cutFood(tool1, 0.234f);
@@ -729,6 +766,7 @@ int main()
     swissArmyKnife1.unscrew(tool1);
     std::cout << swissArmyKnife1.color << std::endl;
     std::cout << swissArmyKnife1.manufactureYear << std::endl;
+    
     Speakers speakers1;
     Speakers::SoundFile soundFile1;
     speakers1.playAudibleSound(soundFile1, 3.0);
@@ -739,21 +777,25 @@ int main()
     cables1.holdDeviceOverUsersHead();
     cables1.transportAudioSignals(wire1, "clap.wav");
     cables1.transportControlSignals(wire1, 100101110);
+    
     BluetoothInterface BluetoothInterface1;
     BluetoothInterface::WirelessChannel wirelessChannel1;
     BluetoothInterface1.receiveAudio(wirelessChannel1, 2.0f);
     BluetoothInterface1.sendPlaySignal(wirelessChannel1);
     BluetoothInterface1.sendBatteryLevel(wirelessChannel1, true);
+    
     LogicCircuit logicCircuit1;
     LogicCircuit::BusChannel busChannel1;
     logicCircuit1.generatePowerAudioForSpeakers(busChannel1, busChannel1, 30.0f);
     logicCircuit1.generateVoiceInformation(busChannel1, "Power On");
     logicCircuit1.monitorBatteryCharge(busChannel1);
+    
     Buttons buttons1;
     Buttons::CircuitSwitch circuitSwitch1;
     buttons1.powerOnTheDevice(circuitSwitch1, 2);
     buttons1.changeSong(circuitSwitch1, 2);
     buttons1.answerACall(circuitSwitch1);
+    
     WirelessHeadphone wirelessHeadphone1;
     WirelessHeadphone::RemoteDevice remoteDevice1;
     wirelessHeadphone1.playSound(remoteDevice1, 1.2);
