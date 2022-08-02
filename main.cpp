@@ -314,7 +314,8 @@ float Laptop::defragmentFile(File inputFile, float precision)
 float Laptop::zoomFile(File inputFile, float zoomPercentage)
 {    
     float currentZoom = 100.0f;
-    while ( currentZoom < zoomPercentage ) { FIXME
+    while ( currentZoom < zoomPercentage ) 
+    {
         inputFile.sizeInBytes *= 1.1f;
         currentZoom += inputFile.sizeInBytes * 0.02f;
         std::cout << "zoomFile fullPath:" << inputFile.fullPath << " sizeInBytes: " << inputFile.sizeInBytes << std::endl;
@@ -326,7 +327,7 @@ struct SwissArmyKnife
 {
     std::string color = "Red";
     int amountOfTools;     
-    float weightInGrams= 40.0f;              
+    float weightInGrams = 40.0f;              
     int manufactureYear;               
     float marketValueInUsd = 75.0f;
 
@@ -380,7 +381,8 @@ void SwissArmyKnife::unscrew(Tool toolB)
 float SwissArmyKnife::megaPressure(Tool toolA, float pressure)
 {    
     float currentPessure = 0.0f;
-    while ( currentPessure < pressure ) { FIXME
+    while ( currentPessure < pressure ) 
+    {
         toolA.thicknessInMm *= 1.2f;
         currentPessure += 2.0f ;
         std::cout << "megaPressure toolName:" << toolA.toolName << " thicknessInMm: " << toolA.thicknessInMm << std::endl;
@@ -391,7 +393,8 @@ float SwissArmyKnife::megaPressure(Tool toolA, float pressure)
 float SwissArmyKnife::reflectSun(Tool toolA, float lightIntensity)
 {    
     float lengthIncrease = 0.0f;
-    while ( lengthIncrease < lightIntensity ) { FIXME
+    while ( lengthIncrease < lightIntensity )
+    {
         toolA.lentghInCm *= 1.2f;
         lengthIncrease += 2.0f ;
         std::cout << "reflectSun toolName:" << toolA.toolName << " lentghInCm: " << toolA.lentghInCm << std::endl;
@@ -440,9 +443,9 @@ float Speakers::playAudibleSound(SoundFile soundFileA, double level)
 
 bool Speakers::activateNoiseReduction(int duration)
 {    
-    if (duration > 50)
+    if ( duration > 50 )
     {
-         return false; FIXME
+         return false;
     }
     return true;
 }
@@ -456,7 +459,8 @@ float Speakers::playUltraSound(SoundFile soundFileB, float level)
 float Speakers::compensateNoise(SoundFile soundFileA, float intensity)
 {    
     float currentIntensity = 0.0f;
-    while ( currentIntensity < intensity ) { FIXME
+    while ( currentIntensity < intensity ) 
+    {
         soundFileA.soundLengthInMs *= 1.8f;
         currentIntensity += 2.5f ;
         std::cout << "compensateNoise filePath:" << soundFileA.filePath << " soundLengthInMs: " << soundFileA.soundLengthInMs << std::endl;
@@ -467,7 +471,8 @@ float Speakers::compensateNoise(SoundFile soundFileA, float intensity)
 float Speakers::forceZero(SoundFile soundFileA, float maxWatts)
 {    
     float currentWatts = 0.0f;
-    while ( currentWatts < maxWatts ) { FIXME
+    while ( currentWatts < maxWatts )
+    {
         soundFileA.soundLengthInMs *= 1.4f;
         currentWatts += 4.0f ;
         std::cout << "forceZero filePath:" << soundFileA.filePath << " soundLengthInMs: " << soundFileA.soundLengthInMs << std::endl;
@@ -479,7 +484,7 @@ struct Cables
 {
     int lengthInCm;
     std::string color;     
-    int amountOfinternalWires= 5;              
+    int amountOfinternalWires = 5;              
     std::string externalMatrerial = "Plastic";               
 
     Cables() : lengthInCm( 5 ), color( "Red" ) { }
@@ -537,7 +542,8 @@ float Cables::sendSquareWave(Wire wireA, int maxVoltage)
 float Cables::resetToGround(Wire wireA, int timeMillis)
 {    
     float currentPower = 0.8f;
-    for (int i = 0; i < timeMillis; ++i) { FIXME
+    for (int i = 0; i < timeMillis; ++i) 
+    {
         wireA.thicknessInUm *= 0.7f;
         currentPower *= 1.2f;
         std::cout << "resetToGround material:" << wireA.material << " currentPower: " << currentPower << std::endl;
@@ -702,7 +708,7 @@ struct Buttons
 
 bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed)
 {    
-    if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20) FIXME
+    if (circuitSwitchA.amountOfPins + amountOfSecondsPressed > 20)
         return false;
     std::cout << "Powering the device on" << std::endl;
     std::cout << "Buttons::powerOnTheDevice(...) color:" << color << " material: " << material << std::endl;
