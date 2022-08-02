@@ -136,8 +136,9 @@ void StationersShop::wrapAGift(std::string wrappingPaperModel)
 float StationersShop::chargeCustomer(std::string customerName, float maxCredit, int numItems)
 {    
     float totalPrice = 0.0f;
-    StationersShop::Paper paper = StationersShop::Paper();
-    while ( totalPrice < maxCredit ) {
+    auto paper = StationersShop::Paper();
+    while ( totalPrice < maxCredit ) 
+    {
         paper.priceInUsd = ( maxCredit / numItems ) * 0.95f - paper.priceInUsd * 0.2f;
         totalPrice += paper.priceInUsd * 1.2f;
         std::cout << "chargeCustomer customerName:" << customerName << " totalPrice: " << totalPrice << std::endl;
@@ -149,9 +150,10 @@ float StationersShop::chargeCustomer(std::string customerName, float maxCredit, 
 float StationersShop::sendItems(std::string customerAddress, float weightPerItem, int numItems)
 {   
     float shippingCost = 0.0f;
-    StationersShop::Paper paper = StationersShop::Paper();
-    int i=0;
-    while ( i < numItems ) {
+    auto paper = StationersShop::Paper();
+    int i = 0;
+    while ( i < numItems ) 
+    {
         paper.thicnessInuM = ( paper.thicnessInuM ) * 0.95f + paper.thicnessInuM * 0.2f;
         shippingCost += paper.thicnessInuM * 0.8f + weightPerItem;
         std::cout << "sendItems customerAddress:" << customerAddress << " shippingCost: " << shippingCost << std::endl;
@@ -222,7 +224,8 @@ bool Wallet::enterABuilding(float walletOrientationToUseInDegrees)
 float Wallet::creditAuthorization(CreditCard creditCardB, float pricePerItem, int numItems)
 {    
     float amountReserved = 0.0f;
-    for (int i = 0; i < numItems; ++i) {
+    for (int i = 0; i < numItems; ++i)
+    {
         creditCardB.availableCreditInUsd = ( creditCardB.availableCreditInUsd ) * 0.7f + pricePerItem;
         amountReserved += creditCardB.availableCreditInUsd * 1.01f;
         std::cout << "creditAuthorization cardNumber:" << creditCardB.cardNumber << " availableCreditInUsd: " << creditCardB.availableCreditInUsd << std::endl;
@@ -233,7 +236,8 @@ float Wallet::creditAuthorization(CreditCard creditCardB, float pricePerItem, in
 float Wallet::creditCardBalance(CreditCard creditCardB, int maxEntries)
 {    
     float finalBalance = 0.0f;
-    for (int i = 0; i < maxEntries; ++i) {
+    for (int i = 0; i < maxEntries; ++i) 
+    {
         creditCardB.availableCreditInUsd *= 0.9f;
         finalBalance += creditCardB.availableCreditInUsd * 1.05f;
         std::cout << "creditCardBalance cardNumber:" << creditCardB.cardNumber << " finalBalance: " << finalBalance << std::endl;
@@ -298,7 +302,8 @@ void Laptop::TakeAPicture(File outputFile, float lidOrientationInDegrees)
 float Laptop::defragmentFile(File inputFile, float precision)
 {    
     float achievedPrecision = 0.0f;
-    while ( achievedPrecision < precision ) {
+    while ( achievedPrecision < precision ) 
+    {
         inputFile.sizeInBytes *= 0.8f;
         achievedPrecision += 2.0f ;
         std::cout << "defragmentFile fullPath:" << inputFile.fullPath << " achievedPrecision: " << achievedPrecision << std::endl;
@@ -521,7 +526,8 @@ float Cables::transportControlSignals(Wire wireB, int binaryCode)
 float Cables::sendSquareWave(Wire wireA, int maxVoltage)
 {    
     float currentVoltage = 0.0f;
-    for (int i = 0; i < maxVoltage; ++i) {
+    for (int i = 0; i < maxVoltage; ++i) 
+    {
         wireA.resistancePerMeterInOhms *= 0.9f;
         currentVoltage += 1.05f;
         std::cout << "sendSquareWave material:" << wireA.material << " resistancePerMeterInOhms: " << wireA.resistancePerMeterInOhms << std::endl;
@@ -593,7 +599,8 @@ float BluetoothInterface::sendBatteryLevel(WirelessChannel wirelessChannelB, boo
 float BluetoothInterface::restartConnection(WirelessChannel wirelessChannelA, int retries)
 {    
     float receivedPower = 0.3f;
-    for (int i = 0; i < retries; ++i) {
+    for (int i = 0; i < retries; ++i)
+    {
         wirelessChannelA.channelCapacityInMbps *= 0.9f;
         receivedPower *= 1.32f;
         std::cout << "restartConnection channelName:" << wirelessChannelA.channelName << " channelCapacityInMbps: " << wirelessChannelA.channelCapacityInMbps << std::endl;
@@ -653,7 +660,8 @@ double LogicCircuit::monitorBatteryCharge(BusChannel batteryBusToRead)
 float LogicCircuit::resetChips(BusChannel busChannel, int speed)
 {    
     float currentSpeed = 0.3f;
-    for (int i = 0; i < speed; ++i) {
+    for (int i = 0; i < speed; ++i) 
+    {
         busChannel.maxVoltage *= 0.9f;
         currentSpeed *= 1.32f;
         std::cout << "resetChips busDestination:" << busChannel.busDestination << " maxVoltage: " << busChannel.maxVoltage << std::endl;
@@ -713,7 +721,8 @@ std::string Buttons::answerACall(CircuitSwitch circuitSwitchB)
 float Buttons::factoryReset(CircuitSwitch circuitSwitchA, int flashErases)
 {    
     float remainingCharge = 0.3f;
-    for (int i = 0; i < flashErases; ++i) {
+    for (int i = 0; i < flashErases; ++i) 
+    {
         circuitSwitchA.lengthInMm *= 0.9f;
         remainingCharge /= 1.32f;
         std::cout << "factoryReset lengthInMm:" << circuitSwitchA.lengthInMm << " remainingCharge: " << remainingCharge << std::endl;
@@ -774,7 +783,8 @@ std::string WirelessHeadphone::answerACall(RemoteDevice remoteDeviceB)
 float WirelessHeadphone::muteMic(RemoteDevice remoteDeviceA, int retries)
 {    
     float bitsReceived = 0.3f;
-    for (int i = 0; i < retries; ++i) {
+    for (int i = 0; i < retries; ++i)
+    {
         remoteDeviceA.receivedPowerInDb *= 0.23;
         bitsReceived *= 1.32f;
         std::cout << "muteMic receivedPowerInDb:" << remoteDeviceA.receivedPowerInDb << " bitsReceived: " << bitsReceived << std::endl;
