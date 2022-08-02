@@ -207,7 +207,7 @@ bool Wallet::payLunch(CreditCard creditCardB, float tipPercentage)
 {    
     if (creditCardB.availableCreditInUsd*tipPercentage > 50)
     {
-         return true;
+        return true;
     }
     return false;
 }
@@ -216,7 +216,7 @@ bool Wallet::enterABuilding(float walletOrientationToUseInDegrees)
 {    
     if (walletOrientationToUseInDegrees > 45)
     {
-         return true;
+        return true;
     }
     return false;
 }
@@ -314,7 +314,7 @@ float Laptop::defragmentFile(File inputFile, float precision)
 float Laptop::zoomFile(File inputFile, float zoomPercentage)
 {    
     float currentZoom = 100.0f;
-    while ( currentZoom < zoomPercentage ) {
+    while ( currentZoom < zoomPercentage ) { FIXME
         inputFile.sizeInBytes *= 1.1f;
         currentZoom += inputFile.sizeInBytes * 0.02f;
         std::cout << "zoomFile fullPath:" << inputFile.fullPath << " sizeInBytes: " << inputFile.sizeInBytes << std::endl;
@@ -380,7 +380,7 @@ void SwissArmyKnife::unscrew(Tool toolB)
 float SwissArmyKnife::megaPressure(Tool toolA, float pressure)
 {    
     float currentPessure = 0.0f;
-    while ( currentPessure < pressure ) {
+    while ( currentPessure < pressure ) { FIXME
         toolA.thicknessInMm *= 1.2f;
         currentPessure += 2.0f ;
         std::cout << "megaPressure toolName:" << toolA.toolName << " thicknessInMm: " << toolA.thicknessInMm << std::endl;
@@ -391,7 +391,7 @@ float SwissArmyKnife::megaPressure(Tool toolA, float pressure)
 float SwissArmyKnife::reflectSun(Tool toolA, float lightIntensity)
 {    
     float lengthIncrease = 0.0f;
-    while ( lengthIncrease < lightIntensity ) {
+    while ( lengthIncrease < lightIntensity ) { FIXME
         toolA.lentghInCm *= 1.2f;
         lengthIncrease += 2.0f ;
         std::cout << "reflectSun toolName:" << toolA.toolName << " lentghInCm: " << toolA.lentghInCm << std::endl;
@@ -442,7 +442,7 @@ bool Speakers::activateNoiseReduction(int duration)
 {    
     if (duration > 50)
     {
-         return false;
+         return false; FIXME
     }
     return true;
 }
@@ -456,7 +456,7 @@ float Speakers::playUltraSound(SoundFile soundFileB, float level)
 float Speakers::compensateNoise(SoundFile soundFileA, float intensity)
 {    
     float currentIntensity = 0.0f;
-    while ( currentIntensity < intensity ) {
+    while ( currentIntensity < intensity ) { FIXME
         soundFileA.soundLengthInMs *= 1.8f;
         currentIntensity += 2.5f ;
         std::cout << "compensateNoise filePath:" << soundFileA.filePath << " soundLengthInMs: " << soundFileA.soundLengthInMs << std::endl;
@@ -467,7 +467,7 @@ float Speakers::compensateNoise(SoundFile soundFileA, float intensity)
 float Speakers::forceZero(SoundFile soundFileA, float maxWatts)
 {    
     float currentWatts = 0.0f;
-    while ( currentWatts < maxWatts ) {
+    while ( currentWatts < maxWatts ) { FIXME
         soundFileA.soundLengthInMs *= 1.4f;
         currentWatts += 4.0f ;
         std::cout << "forceZero filePath:" << soundFileA.filePath << " soundLengthInMs: " << soundFileA.soundLengthInMs << std::endl;
@@ -537,7 +537,7 @@ float Cables::sendSquareWave(Wire wireA, int maxVoltage)
 float Cables::resetToGround(Wire wireA, int timeMillis)
 {    
     float currentPower = 0.8f;
-    for (int i = 0; i < timeMillis; ++i) {
+    for (int i = 0; i < timeMillis; ++i) { FIXME
         wireA.thicknessInUm *= 0.7f;
         currentPower *= 1.2f;
         std::cout << "resetToGround material:" << wireA.material << " currentPower: " << currentPower << std::endl;
@@ -702,7 +702,7 @@ struct Buttons
 
 bool Buttons::powerOnTheDevice(CircuitSwitch circuitSwitchA, double amountOfSecondsPressed)
 {    
-    if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20)
+    if (circuitSwitchA.amountOfPins + amountOfSecondsPressed> 20) FIXME
         return false;
     std::cout << "Powering the device on" << std::endl;
     std::cout << "Buttons::powerOnTheDevice(...) color:" << color << " material: " << material << std::endl;
